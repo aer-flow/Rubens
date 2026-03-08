@@ -710,62 +710,7 @@ document.getElementById('lightboxNext')?.addEventListener('click', () => {
 });
 
 
-// --- Booking Modal State ---
-const modal = document.getElementById('bookingModal');
-const ctas = [document.getElementById('navCta'), document.getElementById('heroCta'), document.getElementById('mobileNavCta'), document.getElementById('contactCta')];
 
-ctas.forEach(cta => cta?.addEventListener('click', () => {
-  if (menuOpen) hamburger.click();
-  modal.hidden = false;
-  lenis.stop(); // Lock background scroll
-}));
-
-function closeModal() {
-  modal.hidden = true;
-  lenis.start();
-}
-
-document.getElementById('modalClose')?.addEventListener('click', closeModal);
-document.getElementById('modalBackdrop')?.addEventListener('click', closeModal);
-
-// Escape Key Handler for all Overlays
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    if (!modal.hidden) closeModal();
-    if (!lightbox.hidden) closeLightbox();
-    if (menuOpen) hamburger.click();
-  }
-});
-
-
-// --- Fake Form Submission ---
-const form = document.getElementById('bookingForm');
-const submitBtn = document.getElementById('submitBtn');
-
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    // Simulate API Call
-    submitBtn.classList.add('is-loading');
-
-    setTimeout(() => {
-      submitBtn.classList.remove('is-loading');
-      submitBtn.classList.add('is-success');
-
-      setTimeout(() => {
-        closeModal();
-        submitBtn.classList.remove('is-success');
-        form.reset();
-      }, 2000);
-
-    }, 1500);
-  });
-}
 
 // Hover Effect global for cards (.service-card) tilt is optional and handled inside GSAP if needed, 
 // but pure CSS hover + shadow provides the most performant "luxury" feel for now.

@@ -43,7 +43,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=17" />
+    <link rel="stylesheet" href="styles.css?v=18" />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -115,7 +115,7 @@
             <a href="#testimoniale" class="nav-link" data-section="testimoniale">Testimoniale</a>
             <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </nav>
-        <button class="nav-cta btn-primary" id="navCta" aria-label="Programează-te">Programează-te</button>
+        <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="nav-cta btn-primary" id="navCta" aria-label="Programează-te pe Mero">Programează-te</a>
         <button class="hamburger" id="hamburger" aria-label="Deschide meniu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -129,7 +129,7 @@
             <a href="#galerie" class="mobile-nav-link">Portofoliu</a>
             <a href="#testimoniale" class="mobile-nav-link">Testimoniale</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
-            <button class="btn-primary mobile-nav-cta" id="mobileNavCta">Programează-te</button>
+            <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary mobile-nav-cta" id="mobileNavCta">Programează-te</a>
         </nav>
     </div>
 
@@ -153,7 +153,7 @@
                     <span class="hero-line">Barbershop.</span>
                 </h1>
                 <div class="hero-actions" id="heroActions">
-                    <button class="btn-primary btn-large" id="heroCta">Programează-te</button>
+                    <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large" id="heroCta">Programează-te</a>
                     <a href="#despre" class="btn-ghost btn-large">Descoperă Povestea</a>
                 </div>
                 <div class="hero-decor-line hero-decor-line--left" aria-hidden="true"></div>
@@ -484,10 +484,9 @@
                                         rel="noopener">@rubensbarbershop</a></p>
                             </div>
                         </div>
-                        <button class="btn-primary btn-large contact-cta" id="contactCta">
-                            <i class="ph ph-calendar-check" aria-hidden="true"></i>
-                            Programează-te
-                        </button>
+                        <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large contact-cta" id="contactCta">
+                            Rezolvă un loc acum
+                        </a>
                     </div>
                     <div class="contact-map reveal-scale">
                         <div class="map-wrap">
@@ -505,59 +504,6 @@
 
     </main>
 
-    <!-- ═══════════════ BOOKING MODAL ═══════════════ -->
-    <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-label="Formular de rezervare" hidden>
-        <div class="modal-backdrop" id="modalBackdrop"></div>
-        <div class="modal-panel">
-            <button class="modal-close" id="modalClose" aria-label="Închide formularul">
-                <i class="ph ph-x" aria-hidden="true"></i>
-            </button>
-            <div class="modal-header">
-                <div class="modal-pretitle">Ruben's Barbershop</div>
-                <h2 class="modal-title">Programează-te</h2>
-                <p class="modal-sub">Completează formularul și te contactăm în cel mai scurt timp.</p>
-            </div>
-            <form class="modal-form" id="bookingForm" novalidate>
-                <div class="form-field">
-                    <input type="text" id="fieldNume" name="nume" required autocomplete="given-name" placeholder=" " />
-                    <label for="fieldNume">Prenume și Nume</label>
-                    <span class="field-border"></span>
-                </div>
-                <div class="form-field">
-                    <input type="tel" id="fieldTel" name="telefon" required autocomplete="tel" placeholder=" " />
-                    <label for="fieldTel">Număr de Telefon</label>
-                    <span class="field-border"></span>
-                </div>
-                <div class="form-field">
-                    <select id="fieldServiciu" name="serviciu" required>
-                        <option value="" disabled selected></option>
-                        <option value="tunsoare">Tunsoare Clasică</option>
-                        <option value="fade">Fade Premium</option>
-                        <option value="barba">Beard Grooming</option>
-                        <option value="barbierit">Bărbierit Tradițional</option>
-                        <option value="combo">Combo Tunsoare + Barbă</option>
-                    </select>
-                    <label for="fieldServiciu">Serviciu Dorit</label>
-                    <span class="field-border"></span>
-                </div>
-                <div class="form-field">
-                    <input type="date" id="fieldData" name="data" required placeholder=" " />
-                    <label for="fieldData">Data Preferată</label>
-                    <span class="field-border"></span>
-                </div>
-                <div class="form-field">
-                    <textarea id="fieldMesaj" name="mesaj" rows="3" placeholder=" "></textarea>
-                    <label for="fieldMesaj">Mesaj (opțional)</label>
-                    <span class="field-border"></span>
-                </div>
-                <button type="submit" class="btn-primary btn-large btn-submit" id="submitBtn">
-                    <span class="btn-text">Trimite Rezervarea</span>
-                    <span class="btn-spinner" aria-hidden="true"></span>
-                    <span class="btn-check" aria-hidden="true">✓</span>
-                </button>
-            </form>
-        </div>
-    </div>
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer" role="contentinfo">
