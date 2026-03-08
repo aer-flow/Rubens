@@ -1082,31 +1082,37 @@
   .h-scroll-hint-float {
     position: absolute;
     top: 50%;
-    right: var(--space-s);
+    right: 0; /* Snapped to the right edge */
     transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    background: rgba(18, 18, 18, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(220, 165, 80, 0.3);
-    border-radius: 50%;
+    width: 44px;
+    height: 64px; /* Taller, elegant pill shape */
+    background: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(220, 165, 80, 0.2);
+    border-right: none; /* Flush with edge */
+    border-radius: 32px 0 0 32px; /* Half-pill rounding */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 12px;
     color: var(--color-accent);
-    font-size: var(--step-1);
+    font-size: var(--step-0);
     z-index: 10;
-    pointer-events: none; /* So it doesn't block touch scroll */
-    animation: floatSwipe 2s infinite ease-in-out;
+    pointer-events: none;
   }
 
-  @keyframes floatSwipe {
+  /* Animate just the icon inside the static bubble */
+  .h-scroll-hint-float i {
+    animation: nudgeArrow 1.5s infinite ease-in-out;
+  }
+
+  @keyframes nudgeArrow {
     0%, 100% {
-      transform: translate(0, -50%);
+      transform: translateX(0);
     }
     50% {
-      transform: translate(10px, -50%);
+      transform: translateX(4px);
     }
   }
 
