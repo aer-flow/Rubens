@@ -475,9 +475,10 @@
     font-style: normal;
   }
 
-  .nav-links {
-    display: flex;
-    gap: var(--space-l);
+  .nav-links,
+  .nav-cta {
+    display: none;
+    /* Hidden on all sizes to enforce hamburger menu exclusively */
   }
 
   .nav-link {
@@ -510,7 +511,8 @@
   }
 
   .hamburger {
-    display: none;
+    display: block;
+    /* Always visible to replace desktop links */
     width: 30px;
     height: 20px;
     position: relative;
@@ -614,7 +616,13 @@
   }
 
   .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: -2;
+    overflow: hidden;
+    /* Ensure scaling image doesn't break bounds */
   }
 
   .hero-overlay {
@@ -672,10 +680,15 @@
   }
 
   .hero-sub {
-    font-size: var(--step-1);
-    color: var(--color-text-muted);
+    font-size: var(--step-2);
+    /* Slightly larger */
+    color: #ffffff !important;
+    /* Pure white text for better contrast instead of muted */
+    font-weight: 500;
     margin-bottom: var(--space-xl);
     opacity: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+    /* Darker shadow so it pops off the background */
   }
 
   .hero-actions {
@@ -1857,14 +1870,7 @@
       width: 100%;
     }
 
-    .nav-links::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-cta {
-      display: none;
-    }
-
+    /* No longer need to hide `.nav-cta` explicitly on mobile, because it's hidden everywhere up top */
     .hamburger {
       display: block;
     }

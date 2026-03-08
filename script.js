@@ -264,13 +264,17 @@ function initApp() {
       duration: 1.2,
       ease: 'expo.inOut'
     })
-    // Hero Image Premium Reveal
+    // Hero Image Opacity Reveal
     .to('.hero-img', {
       opacity: 1,
-      scale: 1.05,
-      duration: 2.5,
-      ease: 'power2.out'
+      duration: 1.5,
+      ease: 'power2.inOut'
     }, "-=1")
+    // Hero Background Premium Scale (Ken Burns)
+    .fromTo('.hero-bg',
+      { scale: 1.15 },
+      { scale: 1, duration: 4, ease: 'power2.out' }
+      , "-=1.5")
     // Hero Text Entrances
     .to('.split-word', {
       clipPath: 'inset(0 0 0% 0)',
