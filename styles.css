@@ -713,6 +713,48 @@
     font-weight: 300;
   }
 
+  /* Decorative thin accent lines */
+  .hero-decor-line {
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-accent));
+    opacity: 0.5;
+  }
+
+  .hero-decor-line--left {
+    right: calc(100% + 16px);
+    background: linear-gradient(to left, transparent, var(--color-accent));
+  }
+
+  .hero-decor-line--right {
+    left: calc(100% + 16px);
+    background: linear-gradient(to right, transparent, var(--color-accent));
+  }
+
+  /* About Floater sparkle */
+  .about-floater {
+    position: absolute;
+    top: -24px;
+    right: -24px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .floater-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    filter: drop-shadow(0 0 12px rgba(200, 135, 42, 0.6));
+    display: block;
+    line-height: 1;
+  }
+
+
   .hero-sub {
     font-size: var(--step-2);
     /* Slightly larger */
@@ -724,6 +766,7 @@
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
     /* Darker shadow so it pops off the background */
   }
+
 
   .hero-actions {
     display: flex;
@@ -1330,6 +1373,8 @@
 
   .testimonials-track-wrap {
     cursor: grab;
+    overflow: hidden;
+    position: relative;
   }
 
   .testimonials-track-wrap:active {
@@ -1340,6 +1385,13 @@
     display: flex;
     gap: var(--space-l);
     padding-bottom: var(--space-m);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .testimonials-track::-webkit-scrollbar {
+    display: none;
   }
 
   .testimonial-card {

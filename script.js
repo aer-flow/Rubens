@@ -110,8 +110,8 @@ function renderGallery() {
 
 function renderTestimonials() {
   const track = document.getElementById('testimonialsTrack');
-  const dots = document.getElementById('testimonialsDots');
-  if (!track || !dots) return;
+  const dotsContainer = document.getElementById('testimonialsDots');
+  if (!track || !dotsContainer) return;
 
   track.innerHTML = db.testimonials.map(t => `
     <div class="testimonial-card">
@@ -126,7 +126,7 @@ function renderTestimonials() {
     </div>
   `).join('');
 
-  dots.innerHTML = db.testimonials.map((_, i) => `<button class="dot ${i === 0 ? 'active' : ''}" aria-label="Testimonial ${i + 1}"></button>`).join('');
+  dotsContainer.innerHTML = db.testimonials.map((_, i) => `<button class="dot ${i === 0 ? 'active' : ''}" aria-label="Testimonial ${i + 1}" data-idx="${i}"></button>`).join('');
 }
 
 // Call renders
@@ -136,6 +136,67 @@ renderTestimonials();
 
 // Set up Footer year
 document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+// ==========================================================================
+// TESTIMONIALS – Drag scroll + Dot Sync
+// ==========================================================================
+(function initTestimonialsCarousel() {
+  const wrap = document.querySelector('.testimonials-track-wrap');
+  const track = document.getElementById('testimonialsTrack');
+  const dotsContainer = document.getElementById('testimonialsDots');
+  if (!wrap || !track || !dotsContainer) return;
+
+  // --- Dot click: scroll to card ---
+  dotsContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.dot');
+    if (!btn) return;
+    const idx = parseInt(btn.getAttribute('data-idx'), 10);
+    const cards = track.querySelectorAll('.testimonial-card');
+    if (cards[idx]) {
+      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  });
+
+  // --- Active dot tracking via IntersectionObserver ---
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cards = [...track.querySelectorAll('.testimonial-card')];
+        const idx = cards.indexOf(entry.target);
+        if (idx === -1) return;
+        const dots = [...dotsContainer.querySelectorAll('.dot')];
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { root: wrap, threshold: 0.6 });
+
+  track.querySelectorAll('.testimonial-card').forEach(card => cardObserver.observe(card));
+
+  // --- Desktop drag-to-scroll ---
+  if (!window.matchMedia('(pointer: coarse)').matches) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    wrap.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - wrap.offsetLeft;
+      scrollLeft = track.scrollLeft;
+      wrap.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      wrap.style.cursor = 'grab';
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - wrap.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
+  }
+})();
 
 // ==========================================================================
 // 5. PHYSICS CURSOR (requestAnimationFrame Lerp Engine)
@@ -491,6 +552,31 @@ function initScrollAnimations() {
         ease: 'expo.out'
       });
     }
+  });
+
+  // 7.7 About Badge Reveal
+  ScrollTrigger.create({
+    trigger: '.about-img-wrap',
+    start: 'top 75%',
+    once: true,
+    onEnter: () => {
+      gsap.to('.about-img-badge', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'expo.out',
+        delay: 0.3
+      });
+    }
+  });
+
+  // 7.8 Floating badge float loop
+  gsap.to('.about-floater', {
+    y: -15,
+    duration: 2.5,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
   });
 }
 
