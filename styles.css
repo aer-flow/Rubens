@@ -1879,8 +1879,11 @@
     }
 
     .h-panel-img-wrap {
-      min-height: 400px;
       width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      min-height: unset;
+      flex: none;
     }
 
     .stats-strip-inner {
