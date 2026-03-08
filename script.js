@@ -21,7 +21,7 @@ const lenis = new Lenis({
   lerp: 0.1,
   wheelMultiplier: 1,
   smoothWheel: true,
-  syncTouch: true,
+  syncTouch: false, // Set to false to allow native mobile pull-to-refresh
   touchInertiaMultiplier: 10
 });
 
@@ -232,11 +232,74 @@ class CursorEngine {
 }
 
 // ==========================================================================
+// 5.5 ATMOSPHERE ENGINE (Canvas Particles)
+// ==========================================================================
+class AtmosphereEngine {
+  constructor() {
+    this.canvas = document.getElementById('heroCanvas');
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.numParticles = window.innerWidth < 768 ? 40 : 100;
+
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+
+    this.initParticles();
+    gsap.ticker.add(() => this.render());
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  initParticles() {
+    this.particles = [];
+    for (let i = 0; i < this.numParticles; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        radius: Math.random() * 2 + 0.5,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.8) * 0.3, // Mostly drift upwards
+        alpha: Math.random() * 0.5 + 0.1
+      });
+    }
+  }
+
+  render() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.particles.forEach(p => {
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges cinematically
+      if (p.x < -10) p.x = this.canvas.width + 10;
+      if (p.x > this.canvas.width + 10) p.x = -10;
+      if (p.y < -10) {
+        p.y = this.canvas.height + 10;
+        p.x = Math.random() * this.canvas.width;
+      }
+
+      // Draw dust mote
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      this.ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+      this.ctx.fill();
+    });
+  }
+}
+
+// ==========================================================================
 // 6. INITIALIZATION & LOADER CHOREOGRAPHY
 // ==========================================================================
 
 function initApp() {
   const cursor = new CursorEngine();
+  const atmosphere = new AtmosphereEngine();
 
   // Custom SplitText Alternative logic (wrapping words in spans)
   document.querySelectorAll('[data-split]').forEach(el => {
@@ -264,17 +327,12 @@ function initApp() {
       state.isLoading = false;
       initScrollAnimations();
     })
-    // Hero Image Opacity Reveal
-    .to('.hero-img', {
-      opacity: 1,
-      duration: 1.2,
-      ease: 'power2.out'
-    }, "-=1.0")
-    // Hero Background Premium Scale (Ken Burns)
-    .fromTo('.hero-bg',
-      { scale: 1.15 },
-      { scale: 1, duration: 3.5, ease: 'power2.out' }
-      , "-=1.2")
+    // Hero Image Premium Reveal & Scale (Ken Burns)
+    .fromTo('.hero-img',
+      { opacity: 0, scale: 1.15 },
+      { opacity: 1, scale: 1, duration: 4, ease: 'power2.out' },
+      "-=1.0"
+    )
     // Hero Text Entrances
     .fromTo('.hero-line', {
       clipPath: 'inset(0 0 100% 0)',
@@ -380,8 +438,11 @@ function initScrollAnimations() {
     });
   });
 
-  // 7.5 Horizontal Scroll Story
-  if (!state.isTouch) { // Use isTouch (which covers tablets/phones) to only init horizontal scrolling on Desktop
+  // 7.5 Horizontal Scroll & Parallax - Desktop Only
+  let mm = gsap.matchMedia();
+
+  mm.add("(min-width: 1025px)", () => {
+    // Horizontal Story
     const track = document.getElementById('hScrollTrack');
     const panels = gsap.utils.toArray('.h-panel');
 
@@ -400,7 +461,22 @@ function initScrollAnimations() {
         }
       });
     }
-  }
+
+    // Gallery Parallax
+    gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+      // Alternate columns up/down
+      const dir = (i % 2 === 0) ? -50 : 50;
+      gsap.to(item, {
+        y: dir,
+        scrollTrigger: {
+          trigger: '.gallery',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5
+        }
+      });
+    });
+  });
 
   // 7.6 Staggered Services
   ScrollTrigger.create({
@@ -416,23 +492,6 @@ function initScrollAnimations() {
       });
     }
   });
-
-  // 7.7 Gallery Parallax (Desktop only)
-  if (!state.isTouch) {
-    gsap.utils.toArray('.gallery-item').forEach((item, i) => {
-      // Alternate columns up/down
-      const dir = (i % 2 === 0) ? -50 : 50;
-      gsap.to(item, {
-        y: dir,
-        scrollTrigger: {
-          trigger: '.gallery',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5
-        }
-      });
-    });
-  }
 }
 
 // ==========================================================================
