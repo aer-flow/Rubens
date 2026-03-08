@@ -1855,13 +1855,25 @@
     object-fit: cover;
   }
 
-  html,
-  body {
-    overflow-x: hidden;
+  html {
+    overflow-x: clip;
+  }
+
+  /* Clip horizontal bleed on every section except the carousel track */
+  .hero,
+  .about,
+  .marquee-strip,
+  .services,
+  .gallery,
+  .stats-strip,
+  .testimonials,
+  .contact-section,
+  footer {
+    overflow-x: clip;
   }
 
   .h-scroll-section {
-    overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: visible;
   }
 
