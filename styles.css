@@ -481,11 +481,7 @@
     font-style: normal;
   }
 
-  .nav-links,
-  .nav-cta {
-    display: none;
-    /* Hidden on all sizes to enforce hamburger menu exclusively */
-  }
+  /* Nav-links shown on desktop; hidden on mobile via media query below */
 
   .nav-link {
     font-family: var(--font-condensed);
@@ -1855,10 +1851,6 @@
     object-fit: cover;
   }
 
-  html {
-    overflow-x: clip;
-  }
-
   /* Clip horizontal bleed on every section except the carousel track */
   .hero,
   .about,
@@ -1880,7 +1872,7 @@
   .h-scroll-pin {
     height: auto;
     display: block;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .h-scroll-track {
