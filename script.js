@@ -276,15 +276,16 @@ function initApp() {
       { scale: 1, duration: 3.5, ease: 'power2.out' }
       , "-=1.2")
     // Hero Text Entrances
-    .to('.split-word', {
+    .fromTo('.hero-line', {
+      clipPath: 'inset(0 0 100% 0)',
+      y: 20
+    }, {
       clipPath: 'inset(0 0 0% 0)',
       y: 0,
-      duration: 1,
-      stagger: 0.05,
+      duration: 1.2,
+      stagger: 0.1,
       ease: 'expo.out'
     }, "-=2.5")
-    .to('.hero-pretitle', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.8")
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.6")
     .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.4")
     .to('.hero-scroll-hint', { opacity: 1, duration: 1, ease: 'power2.out' }, "-=2.2");
 }
@@ -380,22 +381,25 @@ function initScrollAnimations() {
   });
 
   // 7.5 Horizontal Scroll Story
-  if (!state.isMobile) {
+  if (!state.isTouch) { // Use isTouch (which covers tablets/phones) to only init horizontal scrolling on Desktop
     const track = document.getElementById('hScrollTrack');
     const panels = gsap.utils.toArray('.h-panel');
-    const walkDistance = () => track.scrollWidth - window.innerWidth;
 
-    gsap.to(panels, {
-      x: () => -walkDistance(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#povestea',
-        pin: true,
-        scrub: 1,
-        end: () => `+=${walkDistance()}`,
-        invalidateOnRefresh: true
-      }
-    });
+    if (track && panels.length > 0) {
+      const walkDistance = () => track.scrollWidth - window.innerWidth;
+
+      gsap.to(panels, {
+        x: () => -walkDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#povestea',
+          pin: true,
+          scrub: 1,
+          end: () => `+=${walkDistance()}`,
+          invalidateOnRefresh: true
+        }
+      });
+    }
   }
 
   // 7.6 Staggered Services

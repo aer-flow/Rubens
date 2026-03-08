@@ -672,8 +672,7 @@
 
   .hero-line {
     display: block;
-    clip-path: inset(0 0 100% 0);
-    /* Ready for reveal */
+    /* GSAP handles reveal */
   }
 
   .hero-line--accent {
@@ -1825,13 +1824,15 @@
 
     .h-scroll-track {
       height: auto;
-      display: block;
+      display: flex;
+      flex-direction: column;
       width: 100%;
       padding: 0;
     }
 
     .h-panel {
       margin-bottom: var(--space-3xl);
+      width: 100%;
       max-width: 100%;
       padding: 0 var(--space-m);
     }
@@ -1903,9 +1904,15 @@
 
     /* Push down away from nav */
 
-    /* Slightly smaller to fit mobile screens perfectly */
+    /* Stack Contact elements vertically on mobile */
     .contact-grid {
-      grid-template-columns: 1fr;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--space-xl);
+    }
+
+    .contact-map {
+      height: 350px;
     }
 
     .footer-grid {
@@ -2017,6 +2024,7 @@
 
     .about-img-wrap {
       width: 100%;
+      max-width: 100%;
       margin: 0;
     }
   }
