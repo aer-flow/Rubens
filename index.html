@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruben's Barbershop – Frizerie de Lux în Cluj-Napoca</title>
+    <meta name="description"
+        content="Ruben's Barbershop – frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux. Rezervă-ți locul acum." />
+    <link rel="canonical" href="https://rubensbarbershop.ro/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ruben's Barbershop – Cluj-Napoca" />
+    <meta property="og:description"
+        content="Frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux." />
+    <meta property="og:image" content="https://rubensbarbershop.ro/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rubensbarbershop.ro/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ruben's Barbershop – Cluj-Napoca" />
+    <meta name="twitter:description"
+        content="Frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux." />
+    <meta name="twitter:image" content="https://rubensbarbershop.ro/og-image.jpg" />
+
+    <!-- Fonts preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- GSAP + Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+
+    <!-- Lenis smooth scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Ruben's Barbershop",
+    "description": "Frizerie premium în Cluj-Napoca, specializată în tunsori bărbătești și beard grooming.",
+    "url": "https://rubensbarbershop.ro",
+    "telephone": "+40741234567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Strada Eroilor 14",
+      "addressLocality": "Cluj-Napoca",
+      "addressRegion": "Cluj",
+      "postalCode": "400129",
+      "addressCountry": "RO"
+    },
+    "openingHours": ["Mo-Fr 09:00-20:00", "Sa 09:00-18:00"],
+    "priceRange": "$$",
+    "image": "https://rubensbarbershop.ro/ruben.jpg",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 46.7712,
+      "longitude": 23.6236
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">Sari la conținut</a>
+
+    <!-- ═══════════════ LOADER ═══════════════ -->
+    <div id="loader" aria-hidden="true">
+        <div class="loader-inner">
+            <div class="loader-logo">
+                <span class="loader-r">R</span><span class="loader-brand">uben's</span>
+            </div>
+            <div class="loader-tagline">Est. 2018 · Cluj-Napoca</div>
+            <div class="loader-bar-wrap">
+                <div class="loader-bar" id="loaderBar"></div>
+            </div>
+        </div>
+        <div class="loader-curtain" id="loaderCurtain"></div>
+    </div>
+
+    <!-- ═══════════════ SCROLL PROGRESS ═══════════════ -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- ═══════════════ CURSOR ═══════════════ -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true">
+        <span class="cursor-label" id="cursorLabel"></span>
+    </div>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
+    <header class="navbar" id="navbar" role="banner">
+        <a href="#hero" class="nav-logo" aria-label="Ruben's Barbershop – pagina principală">
+            <span class="nav-logo-r">R</span><span class="nav-logo-rest">'s</span>
+        </a>
+        <nav class="nav-links" role="navigation" aria-label="Navigare principală">
+            <a href="#despre" class="nav-link" data-section="despre">Despre</a>
+            <a href="#servicii" class="nav-link" data-section="servicii">Servicii</a>
+            <a href="#galerie" class="nav-link" data-section="galerie">Galerie</a>
+            <a href="#testimoniale" class="nav-link" data-section="testimoniale">Testimoniale</a>
+            <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+        </nav>
+        <button class="nav-cta btn-primary" id="navCta" aria-label="Rezervă o programare">Rezervă</button>
+        <button class="hamburger" id="hamburger" aria-label="Deschide meniu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Meniu mobil">
+        <nav class="mobile-nav-links">
+            <a href="#despre" class="mobile-nav-link">Despre</a>
+            <a href="#servicii" class="mobile-nav-link">Servicii</a>
+            <a href="#galerie" class="mobile-nav-link">Galerie</a>
+            <a href="#testimoniale" class="mobile-nav-link">Testimoniale</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <button class="btn-primary mobile-nav-cta" id="mobileNavCta">Rezervă Acum</button>
+        </nav>
+    </div>
+
+    <main id="main-content">
+
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero" id="hero" aria-label="Secțiunea principală">
+            <div class="hero-bg">
+                <img src="ruben.jpg" alt="Interior Ruben's Barbershop Cluj-Napoca" class="hero-img" width="1920"
+                    height="1080" fetchpriority="high" />
+                <div class="hero-overlay"></div>
+                <div class="hero-vignette"></div>
+            </div>
+            <div class="noise-overlay" aria-hidden="true"></div>
+            <div class="grain-overlay" aria-hidden="true"></div>
+
+            <div class="hero-content">
+                <div class="hero-pretitle" id="heroPretitle">Cluj-Napoca · Est. 2018</div>
+                <h1 class="hero-title" id="heroTitle">
+                    <span class="hero-line" data-split>Arta</span>
+                    <span class="hero-line hero-line--accent" data-split>Bărbieritului</span>
+                    <span class="hero-line hero-line--thin" data-split>Redefinit.</span>
+                </h1>
+                <p class="hero-sub" id="heroSub">Tunsori premium · Beard Grooming · Îngrijire de Lux</p>
+                <div class="hero-actions" id="heroActions">
+                    <button class="btn-primary btn-large" id="heroCta">Rezervă O Vizită</button>
+                    <a href="#despre" class="btn-ghost btn-large">Descoperă Povestea</a>
+                </div>
+                <div class="hero-decor-line hero-decor-line--left" aria-hidden="true"></div>
+                <div class="hero-decor-line hero-decor-line--right" aria-hidden="true"></div>
+            </div>
+
+            <div class="hero-scroll-hint" id="heroScrollHint" aria-hidden="true">
+                <span>Scroll</span>
+                <div class="hero-scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ MARQUEE STRIP ═══════════════ -->
+        <div class="marquee-section" aria-hidden="true">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                </div>
+            </div>
+            <div class="marquee-track marquee-track--reverse">
+                <div class="marquee-content">
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ ABOUT ═══════════════ -->
+        <section class="about" id="despre" aria-label="Despre noi">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-media reveal-scale">
+                        <div class="about-img-wrap">
+                            <img src="ruben.jpg" alt="Ruben, maestrul frizer din Cluj-Napoca" class="about-img"
+                                width="800" height="1000" loading="lazy" />
+                            <div class="about-img-badge">
+                                <span class="badge-num">7+</span>
+                                <span class="badge-text">Ani de Experiență</span>
+                            </div>
+                        </div>
+                        <div class="about-floater" aria-hidden="true">
+                            <span class="floater-icon">✦</span>
+                        </div>
+                    </div>
+                    <div class="about-copy">
+                        <div class="section-pretitle reveal-up">Povestea Noastră</div>
+                        <h2 class="section-title reveal-up">Unde Tradiția<br /><em>Întâlnește Arta.</em></h2>
+                        <blockquote class="pull-quote reveal-up">
+                            „Un bărbat bine aranjat nu are nevoie să spună nimic —<br />
+                            <em>aspectul lui vorbește de la sine.</em>"
+                        </blockquote>
+                        <p class="about-text reveal-up">
+                            Ruben's Barbershop s-a născut în 2018 dintr-o pasiune autentică pentru arta bărbieritului
+                            tradițional și dorința de a oferi clienților din Cluj-Napoca o experiență cu adevărat
+                            deosebită. Fiecare tuns, fiecare contur, fiecare detaliu este tratat cu precizia unui
+                            artizan desăvârșit.
+                        </p>
+                        <p class="about-text reveal-up">
+                            Ne mândrim cu o echipă de bărbierie profesioniști care combină tehnicile clasice cu
+                            tendințele moderne, creând rezultate care depășesc așteptările. Fiecare vizită este mai mult
+                            decât un serviciu — este o experiență.
+                        </p>
+                        <div class="about-stats reveal-up">
+                            <div class="stat">
+                                <span class="stat-num" data-count="2500">0</span>
+                                <span class="stat-label">Clienți Fericiți</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num" data-count="7">0</span>
+                                <span class="stat-label">Ani Experiență</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num" data-count="15">0</span>
+                                <span class="stat-label">Servicii Oferite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ HORIZONTAL SCROLL / STORY ═══════════════ -->
+        <section class="h-scroll-section" id="povestea" aria-label="Capitolele poveștii noastre">
+            <div class="h-scroll-pin" id="hScrollPin">
+                <div class="h-scroll-track" id="hScrollTrack">
+
+                    <div class="h-panel h-panel--intro">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">01</div>
+                            <h2 class="h-panel-title">Măiestrie<br /><em>Autentică</em></h2>
+                            <p class="h-panel-text">Fiecare client primește atenție individualizată. Nu există două
+                                tunsori identice — adaptăm stilul la personalitatea și structura fiecăruia.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="ruben.jpg" alt="Barbier la lucru" class="h-panel-img" loading="lazy" width="600"
+                                height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--craft">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">02</div>
+                            <h2 class="h-panel-title">Instrumente<br /><em>de Elită</em></h2>
+                            <p class="h-panel-text">Folosim exclusiv aparatură profesională de top — de la foarfece
+                                Jaguar la aparate Wahl și Andis. Calitatea instrumentelor se simte în fiecare detaliu al
+                                tunsorii.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="ruben.jpg" alt="Instrumente profesionale de barbier" class="h-panel-img"
+                                loading="lazy" width="600" height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--ritual">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">03</div>
+                            <h2 class="h-panel-title">Ritualul<br /><em>Complet</em></h2>
+                            <p class="h-panel-text">De la prosopul fierbinte care deschide porii la produsele premium de
+                                finisare — fiecare pas din procesul nostru este gândit să transforme o simplă tuns
+                                într-o experiență senzorială.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="ruben.jpg" alt="Ritual de bărbierit cu prosop fierbinte" class="h-panel-img"
+                                loading="lazy" width="600" height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--atelier">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">04</div>
+                            <h2 class="h-panel-title">Atelierul<br /><em>Tău</em></h2>
+                            <p class="h-panel-text">Spațiul nostru din inima Clujului este mai mult decât un salon —
+                                este un loc unde bărbații se simt bine primiți, respectați și tratați ca VIP. Muzică
+                                bună, atmosferă relaxantă, conversații autentice.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="ruben.jpg" alt="Interiorul Ruben's Barbershop" class="h-panel-img" loading="lazy"
+                                width="600" height="800" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ SERVICII ═══════════════ -->
+        <section class="services" id="servicii" aria-label="Serviciile noastre">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <div class="section-pretitle">Ce Oferim</div>
+                    <h2 class="section-title">Servicii<br /><em>Premium</em></h2>
+                </div>
+
+                <!-- Tabs -->
+                <div class="services-tabs" role="tablist" aria-label="Categorii de servicii">
+                    <button class="tab-btn active" data-tab="tunsori" role="tab" aria-selected="true"
+                        aria-controls="tab-tunsori" id="tab-btn-tunsori">Tunsori</button>
+                    <button class="tab-btn" data-tab="barba" role="tab" aria-selected="false" aria-controls="tab-barba"
+                        id="tab-btn-barba">Barbă</button>
+                    <button class="tab-btn" data-tab="combo" role="tab" aria-selected="false" aria-controls="tab-combo"
+                        id="tab-btn-combo">Combo</button>
+                    <div class="tab-indicator" id="tabIndicator"></div>
+                </div>
+
+                <!-- Tab panels -->
+                <div class="tab-panel active" id="tab-tunsori" role="tabpanel" aria-labelledby="tab-btn-tunsori">
+                    <div class="services-grid" id="servicesGrid"></div>
+                </div>
+                <div class="tab-panel" id="tab-barba" role="tabpanel" aria-labelledby="tab-btn-barba">
+                    <div class="services-grid" id="servicesGridBarba"></div>
+                </div>
+                <div class="tab-panel" id="tab-combo" role="tabpanel" aria-labelledby="tab-btn-combo">
+                    <div class="services-grid" id="servicesGridCombo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ GALLERY ═══════════════ -->
+        <section class="gallery" id="galerie" aria-label="Galeria noastră">
+            <div class="container">
+                <div class="section-header section-header--center reveal-up">
+                    <div class="section-pretitle">Lucrările Noastre</div>
+                    <h2 class="section-title">Galerie<br /><em>de Artă</em></h2>
+                </div>
+                <div class="gallery-masonry" id="galleryGrid" role="list">
+                    <!-- JS rendered -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagine mărită" hidden>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Închide imaginea">
+                <i class="ph ph-x" aria-hidden="true"></i>
+            </button>
+            <button class="lightbox-prev" id="lightboxPrev" aria-label="Imaginea anterioară">
+                <i class="ph ph-caret-left" aria-hidden="true"></i>
+            </button>
+            <button class="lightbox-next" id="lightboxNext" aria-label="Imaginea următoare">
+                <i class="ph ph-caret-right" aria-hidden="true"></i>
+            </button>
+            <div class="lightbox-img-wrap">
+                <img src="" alt="" id="lightboxImg" class="lightbox-img" />
+            </div>
+        </div>
+
+        <!-- ═══════════════ STATS STRIP ═══════════════ -->
+        <section class="stats-strip" id="stats" aria-label="Statistici">
+            <div class="stats-strip-inner">
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="2500">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Clienți Mulțumiți</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="7">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Ani Experiență</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="98">0</span><span class="stat-big-suffix">%</span>
+                    <span class="stat-big-label">Satisfacție</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="15">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Premii Locale</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ TESTIMONIALE ═══════════════ -->
+        <section class="testimonials" id="testimoniale" aria-label="Testimoniale clienți">
+            <div class="container">
+                <div class="section-header section-header--center reveal-up">
+                    <div class="section-pretitle">Ce Spun Clienții</div>
+                    <h2 class="section-title">Testimoniale<br /><em>Reale</em></h2>
+                </div>
+                <div class="testimonials-track-wrap">
+                    <div class="testimonials-track" id="testimonialsTrack">
+                        <!-- JS rendered -->
+                    </div>
+                </div>
+                <div class="testimonials-dots" id="testimonialsDots" role="tablist" aria-label="Navigare testimoniale">
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ CONTACT ═══════════════ -->
+        <section class="contact" id="contact" aria-label="Contact și locație">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <div class="section-pretitle">Vino Să Ne Vizitezi</div>
+                    <h2 class="section-title">Găsește-ne<br /><em>în Cluj</em></h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-details reveal-up">
+                        <div class="contact-item">
+                            <i class="ph ph-map-pin" aria-hidden="true"></i>
+                            <div>
+                                <strong>Adresă</strong>
+                                <p>Strada Eroilor 14,<br />Cluj-Napoca, 400129</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="ph ph-clock" aria-hidden="true"></i>
+                            <div>
+                                <strong>Program</strong>
+                                <p>Lun – Vin: 09:00 – 20:00<br />Sâmbătă: 09:00 – 18:00<br />Duminică: Închis</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="ph ph-phone" aria-hidden="true"></i>
+                            <div>
+                                <strong>Telefon</strong>
+                                <p><a href="tel:+40741234567">+40 741 234 567</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+                            <div>
+                                <strong>Instagram</strong>
+                                <p><a href="https://instagram.com/rubensbarbershop" target="_blank"
+                                        rel="noopener">@rubensbarbershop</a></p>
+                            </div>
+                        </div>
+                        <button class="btn-primary btn-large contact-cta" id="contactCta">
+                            <i class="ph ph-calendar-check" aria-hidden="true"></i>
+                            Rezervă O Programare
+                        </button>
+                    </div>
+                    <div class="contact-map reveal-scale">
+                        <div class="map-wrap">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.9!2d23.6236!3d46.7712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490c1f6d24f035%3A0x6ce9c0a83d17cc6c!2sCluj-Napoca!5e0!3m2!1sro!2sro!4v1709900000000"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Locația Ruben's Barbershop pe hartă"></iframe>
+                            <div class="map-overlay" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ BOOKING MODAL ═══════════════ -->
+    <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-label="Formular de rezervare" hidden>
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-panel">
+            <button class="modal-close" id="modalClose" aria-label="Închide formularul">
+                <i class="ph ph-x" aria-hidden="true"></i>
+            </button>
+            <div class="modal-header">
+                <div class="modal-pretitle">Ruben's Barbershop</div>
+                <h2 class="modal-title">Rezervă O Vizită</h2>
+                <p class="modal-sub">Completează formularul și te contactăm în cel mai scurt timp.</p>
+            </div>
+            <form class="modal-form" id="bookingForm" novalidate>
+                <div class="form-field">
+                    <input type="text" id="fieldNume" name="nume" required autocomplete="given-name" placeholder=" " />
+                    <label for="fieldNume">Prenume și Nume</label>
+                    <span class="field-border"></span>
+                </div>
+                <div class="form-field">
+                    <input type="tel" id="fieldTel" name="telefon" required autocomplete="tel" placeholder=" " />
+                    <label for="fieldTel">Număr de Telefon</label>
+                    <span class="field-border"></span>
+                </div>
+                <div class="form-field">
+                    <select id="fieldServiciu" name="serviciu" required>
+                        <option value="" disabled selected></option>
+                        <option value="tunsoare">Tunsoare Clasică</option>
+                        <option value="fade">Fade Premium</option>
+                        <option value="barba">Beard Grooming</option>
+                        <option value="barbierit">Bărbierit Tradițional</option>
+                        <option value="combo">Combo Tunsoare + Barbă</option>
+                    </select>
+                    <label for="fieldServiciu">Serviciu Dorit</label>
+                    <span class="field-border"></span>
+                </div>
+                <div class="form-field">
+                    <input type="date" id="fieldData" name="data" required placeholder=" " />
+                    <label for="fieldData">Data Preferată</label>
+                    <span class="field-border"></span>
+                </div>
+                <div class="form-field">
+                    <textarea id="fieldMesaj" name="mesaj" rows="3" placeholder=" "></textarea>
+                    <label for="fieldMesaj">Mesaj (opțional)</label>
+                    <span class="field-border"></span>
+                </div>
+                <button type="submit" class="btn-primary btn-large btn-submit" id="submitBtn">
+                    <span class="btn-text">Trimite Rezervarea</span>
+                    <span class="btn-spinner" aria-hidden="true"></span>
+                    <span class="btn-check" aria-hidden="true">✓</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-brand-hero" aria-hidden="true">RUBEN'S</div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-col--brand">
+                    <div class="footer-logo">Ruben's<br /><em>Barbershop</em></div>
+                    <p class="footer-tagline">Arta bărbieritului,<br />redefinită în Cluj.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="Instagram Ruben's Barbershop">
+                            <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://facebook.com/rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="Facebook Ruben's Barbershop">
+                            <i class="ph ph-facebook-logo" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://tiktok.com/@rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="TikTok Ruben's Barbershop">
+                            <i class="ph ph-tiktok-logo" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Navigare</h3>
+                    <ul class="footer-links">
+                        <li><a href="#despre">Despre Noi</a></li>
+                        <li><a href="#servicii">Servicii</a></li>
+                        <li><a href="#galerie">Galerie</a></li>
+                        <li><a href="#testimoniale">Testimoniale</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Servicii</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servicii">Tunsoare Clasică</a></li>
+                        <li><a href="#servicii">Fade Premium</a></li>
+                        <li><a href="#servicii">Beard Grooming</a></li>
+                        <li><a href="#servicii">Bărbierit Tradițional</a></li>
+                        <li><a href="#servicii">Combo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Contact</h3>
+                    <address class="footer-address">
+                        Str. Eroilor 14<br />
+                        Cluj-Napoca, 400129<br />
+                        <a href="tel:+40741234567">+40 741 234 567</a><br />
+                        <a href="mailto:contact@rubensbarbershop.ro">contact@rubensbarbershop.ro</a>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-legal">© <span id="footerYear"></span> Ruben's Barbershop. Toate drepturile rezervate.
+                </p>
+                <p class="footer-credit">Cluj-Napoca, România</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
