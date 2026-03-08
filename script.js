@@ -89,15 +89,15 @@ function renderServices() {
     </div>
   `;
 
-  if(tGrid) tGrid.innerHTML = db.services.tunsori.map(createCard).join('');
-  if(bGrid) bGrid.innerHTML = db.services.barba.map(createCard).join('');
-  if(cGrid) cGrid.innerHTML = db.services.combo.map(createCard).join('');
+  if (tGrid) tGrid.innerHTML = db.services.tunsori.map(createCard).join('');
+  if (bGrid) bGrid.innerHTML = db.services.barba.map(createCard).join('');
+  if (cGrid) cGrid.innerHTML = db.services.combo.map(createCard).join('');
 }
 
 function renderGallery() {
   const grid = document.getElementById('galleryGrid');
-  if(!grid) return;
-  
+  if (!grid) return;
+
   grid.innerHTML = db.gallery.map((img, i) => `
     <div class="gallery-item" data-lb-idx="${i}">
       <img src="${img.src}" alt="${img.alt}" loading="lazy" width="600" height="800" class="gallery-img">
@@ -111,7 +111,7 @@ function renderGallery() {
 function renderTestimonials() {
   const track = document.getElementById('testimonialsTrack');
   const dots = document.getElementById('testimonialsDots');
-  if(!track || !dots) return;
+  if (!track || !dots) return;
 
   track.innerHTML = db.testimonials.map(t => `
     <div class="testimonial-card">
@@ -126,7 +126,7 @@ function renderTestimonials() {
     </div>
   `).join('');
 
-  dots.innerHTML = db.testimonials.map((_, i) => `<button class="dot ${i===0?'active':''}" aria-label="Testimonial ${i+1}"></button>`).join('');
+  dots.innerHTML = db.testimonials.map((_, i) => `<button class="dot ${i === 0 ? 'active' : ''}" aria-label="Testimonial ${i + 1}"></button>`).join('');
 }
 
 // Call renders
@@ -143,19 +143,19 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
 class CursorEngine {
   constructor() {
     if (state.isTouch) return;
-    
+
     this.dot = document.getElementById('cursorDot');
     this.ring = document.getElementById('cursorRing');
     this.label = document.getElementById('cursorLabel');
-    
-    this.mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
-    this.dotPos = { x: window.innerWidth/2, y: window.innerHeight/2 };
-    this.ringPos = { x: window.innerWidth/2, y: window.innerHeight/2 };
-    
+
+    this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.dotPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.ringPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
     this.initEvents();
     this.loop();
   }
-  
+
   initEvents() {
     window.addEventListener('mousemove', (e) => {
       this.mouse.x = e.clientX;
@@ -166,7 +166,7 @@ class CursorEngine {
     document.querySelectorAll('a, button, .gallery-item').forEach(el => {
       el.addEventListener('mouseenter', () => this.hoverEnter(el));
       el.addEventListener('mouseleave', () => this.hoverLeave(el));
-      
+
       // Magnetic pull only on large buttons
       if (el.classList.contains('btn-large')) {
         el.addEventListener('mousemove', (e) => this.magnetMove(e, el));
@@ -182,28 +182,28 @@ class CursorEngine {
     // Dot is fast: 0.35 lerp
     this.dotPos.x = this.lerp(this.dotPos.x, this.mouse.x, 0.35);
     this.dotPos.y = this.lerp(this.dotPos.y, this.mouse.y, 0.35);
-    
+
     // Ring is slow: 0.1 lerp
     this.ringPos.x = this.lerp(this.ringPos.x, this.mouse.x, 0.1);
     this.ringPos.y = this.lerp(this.ringPos.y, this.mouse.y, 0.1);
-    
+
     // Apply transform3d to avoid layout thrashing
     this.dot.style.transform = `translate3d(${this.dotPos.x}px, ${this.dotPos.y}px, 0) translate(-50%, -50%)`;
     this.ring.style.transform = `translate3d(${this.ringPos.x}px, ${this.ringPos.y}px, 0) translate(-50%, -50%)`;
-    
+
     requestAnimationFrame(() => this.loop());
   }
 
   hoverEnter(el) {
     this.ring.classList.add('is-hovering');
-    
+
     let text = "";
     if (el.classList.contains('gallery-item')) text = "Vezi";
     if (el.tagName === 'A') text = "Deschide";
-    
+
     this.label.textContent = text;
   }
-  
+
   hoverLeave(el) {
     this.ring.classList.remove('is-hovering');
     this.label.textContent = "";
@@ -217,11 +217,11 @@ class CursorEngine {
     const rect = el.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    
+
     // Max movement 10px
     const moveX = (e.clientX - cx) * 0.2;
     const moveY = (e.clientY - cy) * 0.2;
-    
+
     gsap.to(el, {
       x: moveX,
       y: moveY,
@@ -237,7 +237,7 @@ class CursorEngine {
 
 function initApp() {
   const cursor = new CursorEngine();
-  
+
   // Custom SplitText Alternative logic (wrapping words in spans)
   document.querySelectorAll('[data-split]').forEach(el => {
     const words = el.innerText.split(' ');
@@ -254,28 +254,35 @@ function initApp() {
 
   // Loader sequence
   tlLoader.to('.loader-logo', { opacity: 1, duration: 1, ease: 'power2.inOut' })
-          .to('.loader-tagline', { opacity: 1, duration: 1, ease: 'power2.inOut' }, "-=0.5")
-          .to('.loader-bar-wrap', { opacity: 1, duration: 0.5 })
-          .to('.loader-bar', { x: '0%', duration: 1.5, ease: 'power3.inOut' })
-          .to('.loader-inner', { opacity: 0, y: -20, duration: 0.6, ease: 'power2.in' }, "+=0.2")
-          // Reveal Curtain
-          .to('#loaderCurtain', { 
-            scaleY: 0, 
-            duration: 1.2, 
-            ease: 'expo.inOut' 
-          })
-          // Hero Entrances
-          .to('.split-word', {
-            clipPath: 'inset(0 0 0% 0)',
-            y: 0,
-            duration: 1,
-            stagger: 0.1,
-            ease: 'expo.out'
-          }, "-=0.4")
-          .to('.hero-pretitle', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.8")
-          .to('.hero-sub', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.6")
-          .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.4")
-          .to('.hero-scroll-hint', { opacity: 1, duration: 1 }, "-=0.2");
+    .to('.loader-tagline', { opacity: 1, duration: 1, ease: 'power2.inOut' }, "-=0.5")
+    .to('.loader-bar-wrap', { opacity: 1, duration: 0.5 })
+    .to('.loader-bar', { x: '0%', duration: 1.5, ease: 'power3.inOut' })
+    .to('.loader-inner', { opacity: 0, y: -20, duration: 0.6, ease: 'power2.in' }, "+=0.2")
+    // Reveal Curtain
+    .to('#loaderCurtain', {
+      scaleY: 0,
+      duration: 1.2,
+      ease: 'expo.inOut'
+    })
+    // Hero Image Premium Reveal
+    .to('.hero-img', {
+      opacity: 1,
+      scale: 1.05,
+      duration: 2.5,
+      ease: 'power2.out'
+    }, "-=1")
+    // Hero Text Entrances
+    .to('.split-word', {
+      clipPath: 'inset(0 0 0% 0)',
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: 'expo.out'
+    }, "-=0.4")
+    .to('.hero-pretitle', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.8")
+    .to('.hero-sub', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.6")
+    .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.4")
+    .to('.hero-scroll-hint', { opacity: 1, duration: 1 }, "-=0.2");
 }
 
 // Simulate network load
@@ -287,20 +294,38 @@ window.addEventListener('load', () => setTimeout(initApp, 500));
 // ==========================================================================
 
 function initScrollAnimations() {
-  
+
   // 7.1 Scroll Progress Bar (Native approach, decoupled from GSAP for speed)
   const progressBar = document.getElementById('scrollProgress');
+  const navbar = document.getElementById('navbar');
+
   lenis.on('scroll', (e) => {
+    // Progress Bar Update
     const progress = e.progress; // 0 to 1
     progressBar.style.transform = `scaleX(${progress})`;
-  });
 
-  // 7.2 Header Background Transform
-  const header = document.getElementById('navbar');
-  ScrollTrigger.create({
-    start: 'top -80px',
-    end: 99999,
-    toggleClass: {className: 'is-scrolled', targets: header}
+    // Smart Navigation Auto-Hide
+    const currentScrollY = e.animatedScroll;
+    const velocity = e.velocity;
+
+    // Apply header background if we scrolled even a little
+    if (currentScrollY > 50) {
+      navbar.classList.add('is-scrolled');
+    } else {
+      navbar.classList.remove('is-scrolled');
+    }
+
+    // Hide navbar when scrolling down (positive velocity), show when scrolling up
+    // Only engage hiding logic if we are safely past the top
+    if (currentScrollY > window.innerHeight * 0.5) {
+      if (velocity > 2 && !menuOpen) {
+        navbar.classList.add('nav-hidden');
+      } else if (velocity < -2) {
+        navbar.classList.remove('nav-hidden');
+      }
+    } else {
+      navbar.classList.remove('nav-hidden'); // Always show at the top
+    }
   });
 
   // 7.3 General Reveals (.reveal-up, .reveal-scale)
@@ -342,7 +367,7 @@ function initScrollAnimations() {
           val: targetCount,
           duration: 2,
           ease: 'power3.out',
-          onUpdate: function() {
+          onUpdate: function () {
             elem.textContent = Math.round(this.targets()[0].val);
           }
         });
@@ -355,7 +380,7 @@ function initScrollAnimations() {
     const track = document.getElementById('hScrollTrack');
     const panels = gsap.utils.toArray('.h-panel');
     const walkDistance = () => track.scrollWidth - window.innerWidth;
-    
+
     gsap.to(panels, {
       x: () => -walkDistance(),
       ease: 'none',
@@ -388,7 +413,7 @@ function initScrollAnimations() {
   if (!state.isTouch) {
     gsap.utils.toArray('.gallery-item').forEach((item, i) => {
       // Alternate columns up/down
-      const dir = (i % 2 === 0) ? -50 : 50; 
+      const dir = (i % 2 === 0) ? -50 : 50;
       gsap.to(item, {
         y: dir,
         scrollTrigger: {
@@ -410,11 +435,11 @@ function initScrollAnimations() {
 const observerOptions = { root: null, rootMargin: '-30% 0px -70% 0px', threshold: 0 };
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if(entry.isIntersecting) {
+    if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        if(link.getAttribute('data-section') === id) link.classList.add('active');
+        if (link.getAttribute('data-section') === id) link.classList.add('active');
       });
     }
   });
@@ -430,7 +455,7 @@ let menuOpen = false;
 hamburger.addEventListener('click', () => {
   menuOpen = !menuOpen;
   hamburger.setAttribute('aria-expanded', menuOpen);
-  
+
   if (menuOpen) {
     gsap.to(mobileNav, { autoAlpha: 1, clipPath: 'inset(0 0 0% 0)', duration: 0.6, ease: 'expo.inOut' });
     gsap.to('.mobile-nav-link, .mobile-nav-cta', { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'expo.out', delay: 0.3 });
@@ -448,8 +473,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
-    if(target) {
-      if(menuOpen) hamburger.click(); // Close mobile menu if open
+    if (target) {
+      if (menuOpen) hamburger.click(); // Close mobile menu if open
       lenis.scrollTo(target, { offset: -90, duration: 1.5 });
     }
   });
@@ -466,10 +491,10 @@ function moveIndicator(btn) {
   indicator.style.left = `${btn.offsetLeft}px`;
 }
 
-if(tabs.length) {
+if (tabs.length) {
   // Move to first active instantly
   setTimeout(() => moveIndicator(document.querySelector('.tab-btn.active')), 100);
-  
+
   window.addEventListener('resize', () => moveIndicator(document.querySelector('.tab-btn.active')));
 
   tabs.forEach(tab => {
@@ -477,16 +502,16 @@ if(tabs.length) {
       // Remove active states
       tabs.forEach(t => t.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
-      
+
       // Setup current
       tab.classList.add('active');
       moveIndicator(tab);
       const targetPanel = document.getElementById(`tab-${tab.dataset.tab}`);
       targetPanel.classList.add('active');
-      
+
       // Stagger animate inner cards of the new panel
       const cards = targetPanel.querySelectorAll('.GSAP-service');
-      gsap.fromTo(cards, 
+      gsap.fromTo(cards,
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'expo.out' }
       );
@@ -501,11 +526,11 @@ const lightbox = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightboxImg');
 let currentLbIndex = 0;
 
-if(galleryGrid) {
+if (galleryGrid) {
   galleryGrid.addEventListener('click', (e) => {
     const item = e.target.closest('.gallery-item');
     if (!item) return;
-    
+
     currentLbIndex = parseInt(item.getAttribute('data-lb-idx'), 10);
     openLightbox();
   });
@@ -554,10 +579,10 @@ document.getElementById('modalBackdrop')?.addEventListener('click', closeModal);
 
 // Escape Key Handler for all Overlays
 window.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') {
-    if(!modal.hidden) closeModal();
-    if(!lightbox.hidden) closeLightbox();
-    if(menuOpen) hamburger.click();
+  if (e.key === 'Escape') {
+    if (!modal.hidden) closeModal();
+    if (!lightbox.hidden) closeLightbox();
+    if (menuOpen) hamburger.click();
   }
 });
 
@@ -566,27 +591,27 @@ window.addEventListener('keydown', (e) => {
 const form = document.getElementById('bookingForm');
 const submitBtn = document.getElementById('submitBtn');
 
-if(form) {
+if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    
+
     // Simulate API Call
     submitBtn.classList.add('is-loading');
-    
+
     setTimeout(() => {
       submitBtn.classList.remove('is-loading');
       submitBtn.classList.add('is-success');
-      
+
       setTimeout(() => {
         closeModal();
         submitBtn.classList.remove('is-success');
         form.reset();
       }, 2000);
-      
+
     }, 1500);
   });
 }
