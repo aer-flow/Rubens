@@ -1839,13 +1839,6 @@
       margin: 0 auto;
     }
 
-    .h-panel {
-      width: 90vw;
-      flex-direction: column;
-      text-align: center;
-      height: auto;
-    }
-
     .h-scroll-pin {
       height: auto;
       display: block;
@@ -1854,16 +1847,35 @@
     .h-scroll-track {
       height: auto;
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 0;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      padding: 0 var(--space-m);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      /* Firefox */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .h-scroll-track::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
     }
 
     .h-panel {
-      margin-bottom: var(--space-3xl);
-      width: 100%;
+      width: 85vw;
+      flex: 0 0 auto;
+      flex-direction: column;
+      text-align: center;
+      height: auto;
+      scroll-snap-align: center;
+      margin-right: var(--space-m);
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-m);
       max-width: 100%;
-      padding: 0 var(--space-m);
     }
 
     .h-panel-img-wrap {
