@@ -1009,17 +1009,35 @@
   }
 
   .h-scroll-pin {
-    height: 100vh;
-    display: flex;
-    align-items: center;
+    height: auto;
+    display: block;
   }
 
   .h-scroll-track {
     display: flex;
-    height: 100vh;
-    padding: 0 var(--space-2xl);
-    align-items: center;
-    width: max-content;
+    flex-direction: column;
+    height: auto;
+    padding: var(--space-xl) var(--space-m);
+    width: 100%;
+    gap: var(--space-2xl);
+  }
+
+  @media (min-width: 1025px) {
+    .h-scroll-pin {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .h-scroll-track {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      padding: 0 var(--space-2xl);
+      align-items: center;
+      width: max-content;
+      gap: 0;
+    }
   }
 
   .h-panel {
