@@ -1835,8 +1835,20 @@
     }
 
     .about-img-wrap {
-      max-width: 600px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .about-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .h-scroll-section {
+      overflow: visible;
     }
 
     .h-scroll-pin {
@@ -1858,6 +1870,8 @@
       scrollbar-width: none;
       /* Firefox */
       -webkit-overflow-scrolling: touch;
+      touch-action: pan-x pan-y;
+      overscroll-behavior-x: contain;
     }
 
     .h-scroll-track::-webkit-scrollbar {
