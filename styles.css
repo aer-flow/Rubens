@@ -1067,28 +1067,6 @@
     color: var(--color-text-muted);
   }
 
-  .h-scroll-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-family: var(--font-condensed);
-    font-size: var(--step--1);
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-m);
-    animation: swipeHint 1.5s infinite ease-in-out;
-  }
-
-  @keyframes swipeHint {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(10px);
-    }
-  }
-
   .h-panel-img-wrap {
     flex: 1;
     width: 100%;
@@ -1097,6 +1075,39 @@
     overflow: hidden;
     display: flex;
     align-items: center;
+    position: relative; /* Need this for absolute positioning of the bubble */
+  }
+
+  /* The actual floating arrow bubble */
+  .h-scroll-hint-float {
+    position: absolute;
+    top: 50%;
+    right: var(--space-s);
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(220, 165, 80, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: var(--step-1);
+    z-index: 10;
+    pointer-events: none; /* So it doesn't block touch scroll */
+    animation: floatSwipe 2s infinite ease-in-out;
+  }
+
+  @keyframes floatSwipe {
+    0%, 100% {
+      transform: translate(0, -50%);
+    }
+    50% {
+      transform: translate(10px, -50%);
+    }
   }
 
   .h-panel-img {
@@ -1138,7 +1149,7 @@
       height: 100%;
     }
 
-    .h-scroll-hint {
+    .h-scroll-hint-float {
       display: none;
     }
   }
