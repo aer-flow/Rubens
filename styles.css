@@ -1827,287 +1827,281 @@
 /* --------------------------------------------------------------------------
    RESPONSIVE DESIGN (Max Width Adjustments)
    -------------------------------------------------------------------------- */
-@layer layout {
-  @media (max-width: 1024px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-    }
-
-    .about-media {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .about-img-wrap {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-    }
-
-    .about-img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-    }
-
-    .h-scroll-section {
-      overflow: visible;
-    }
-
-    .h-scroll-pin {
-      height: auto;
-      display: block;
-    }
-
-    .h-scroll-track {
-      height: auto;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: stretch;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      padding: 0 var(--space-m);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      /* Firefox */
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-x pan-y;
-      overscroll-behavior-x: contain;
-    }
-
-    .h-scroll-track::-webkit-scrollbar {
-      display: none;
-      /* Chrome/Safari */
-    }
-
-    .h-panel {
-      width: 85vw;
-      flex: 0 0 auto;
-      flex-direction: column;
-      text-align: center;
-      height: auto;
-      scroll-snap-align: center;
-      margin-right: var(--space-m);
-      margin-bottom: var(--space-2xl);
-      padding: var(--space-m);
-      max-width: 100%;
-    }
-
-    .h-panel-img-wrap {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-      min-height: unset;
-      flex: none;
-    }
-
-    .stats-strip-inner {
-      flex-wrap: wrap;
-      gap: var(--space-l);
-    }
-
-    .stat-divider {
-      display: none;
-    }
-
-    .stat-big {
-      width: 45%;
-    }
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
   }
 
-  @media (max-width: 768px) {
-
-    /* Wrap nav on mobile instead of hiding or overflowing */
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-s) var(--space-m);
-      width: 100%;
-      padding-top: var(--space-s);
-      margin-left: 0;
-      /* Remove explicit margin that pushes it */
-    }
-
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: var(--space-m);
-      width: 100%;
-    }
-
-    /* No longer need to hide `.nav-cta` explicitly on mobile, because it's hidden everywhere up top */
-    .hamburger {
-      display: block;
-    }
-
-    .hero-title {
-      font-size: 2.5rem;
-      word-break: break-word;
-      line-height: 1.1;
-      margin-bottom: var(--space-m);
-      max-width: 100%;
-    }
-
-    /* Ensure it wraps nicely */
-    .hero-line {
-      display: block;
-      white-space: normal;
-    }
-
-    /* Stack lines explicitly */
-    .hero-content {
-      padding-top: var(--space-2xl);
-      width: 100%;
-    }
-
-    /* Push down away from nav */
-
-    /* Stack Contact elements vertically on mobile */
-    .contact-grid {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: var(--space-xl);
-    }
-
-    .contact-map {
-      height: 350px;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-    }
-
-    /* Stacked footer logically */
-    .gallery-masonry {
-      column-count: 2;
-    }
-
-    .services-tabs {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* Let tabs wrap */
-    .hero-actions {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .hero-actions .btn-primary,
-    .hero-actions .btn-ghost {
-      width: 100%;
-      text-align: center;
-    }
-
-    .hero-scroll-hint {
-      display: none;
-    }
-
-    /* Hide desktop nav clearly */
-    .header-cta {
-      display: none;
-    }
-
-    .marquee-track {
-      width: max-content;
-    }
-
-    .section-title {
-      font-size: var(--step-4);
-    }
-
-    /* Scale down massive fonts on mobile */
-    .h-panel {
-      padding: 0 var(--space-m);
-      width: 100%;
-    }
-
-    .testimonials-track {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: var(--space-xl);
-    }
-
-    .testimonial-card {
-      flex: 0 0 85vw;
-      scroll-snap-align: center;
-    }
+  .about-media {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
-  @media (max-width: 480px) {
-    .container {
-      padding: 0 var(--space-m);
-      overflow-x: hidden;
-    }
-
-    .navbar {
-      padding: var(--space-s) var(--space-m);
-    }
-
-    .nav-logo img {
-      width: 100px;
-    }
-
-    .hero-title {
-      font-size: 2.5rem;
-    }
-
-    .hero-sub {
-      font-size: var(--step--1);
-    }
-
-    .section-title {
-      font-size: 2rem;
-    }
-
-    .gallery-masonry {
-      column-count: 1;
-      gap: var(--space-m);
-    }
-
-    .stat-big {
-      width: 100%;
-    }
-
-    .footer-col-title {
-      margin-top: var(--space-m);
-    }
-
-    .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-      gap: var(--space-m);
-    }
-
-    .about-img-wrap {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-    }
+  .about-img-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
-  /* Disable custom cursor on touch */
-  @media (pointer: coarse) {
+  .about-img {
+    width: 100% !important;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
 
-    .cursor-dot,
-    .cursor-ring {
-      display: none !important;
-    }
+  .h-scroll-section {
+    overflow: visible;
+  }
 
-    /* Revert gallery hover */
-    .gallery-overlay {
-      opacity: 1;
-      background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent 70%);
-    }
+  .h-scroll-pin {
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
 
-    .gallery-caption {
-      transform: translateY(0);
-    }
+  .h-scroll-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll !important;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: var(--space-xl) 0;
+  }
+
+  .h-scroll-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .h-panel {
+    flex: 0 0 90vw;
+    min-width: 0;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    scroll-snap-align: start;
+    padding: var(--space-m);
+    transform: none !important;
+  }
+
+  .h-panel-img-wrap {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    min-height: unset;
+    flex: none;
+  }
+
+  .stats-strip-inner {
+    flex-wrap: wrap;
+    gap: var(--space-l);
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-big {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Wrap nav on mobile instead of hiding or overflowing */
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-s) var(--space-m);
+    width: 100%;
+    padding-top: var(--space-s);
+    margin-left: 0;
+    /* Remove explicit margin that pushes it */
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: var(--space-m);
+    width: 100%;
+  }
+
+  /* No longer need to hide `.nav-cta` explicitly on mobile, because it's hidden everywhere up top */
+  .hamburger {
+    display: block;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    word-break: break-word;
+    line-height: 1.1;
+    margin-bottom: var(--space-m);
+    max-width: 100%;
+  }
+
+  /* Ensure it wraps nicely */
+  .hero-line {
+    display: block;
+    white-space: normal;
+  }
+
+  /* Stack lines explicitly */
+  .hero-content {
+    padding-top: var(--space-2xl);
+    width: 100%;
+  }
+
+  /* Push down away from nav */
+
+  /* Stack Contact elements vertically on mobile */
+  .contact-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-xl);
+  }
+
+  .contact-map {
+    height: 350px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Stacked footer logically */
+  .gallery-masonry {
+    column-count: 2;
+  }
+
+  .services-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Let tabs wrap */
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+
+  /* Hide desktop nav clearly */
+  .header-cta {
+    display: none;
+  }
+
+  .marquee-track {
+    width: max-content;
+  }
+
+  .section-title {
+    font-size: var(--step-4);
+  }
+
+  /* Scale down massive fonts on mobile */
+  .h-panel {
+    padding: 0 var(--space-m);
+    width: 100%;
+  }
+
+  .testimonials-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--space-xl);
+  }
+
+  .testimonial-card {
+    flex: 0 0 85vw;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-m);
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    padding: var(--space-s) var(--space-m);
+  }
+
+  .nav-logo img {
+    width: 100px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-sub {
+    font-size: var(--step--1);
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .gallery-masonry {
+    column-count: 1;
+    gap: var(--space-m);
+  }
+
+  .stat-big {
+    width: 100%;
+  }
+
+  .footer-col-title {
+    margin-top: var(--space-m);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-m);
+  }
+
+  .about-img-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* Disable custom cursor on touch */
+@media (pointer: coarse) {
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  /* Revert gallery hover */
+  .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent 70%);
+  }
+
+  .gallery-caption {
+    transform: translateY(0);
   }
 }
