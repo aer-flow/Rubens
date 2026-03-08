@@ -1834,6 +1834,11 @@
       gap: var(--space-xl);
     }
 
+    .about-media {
+      width: 100%;
+      max-width: 100%;
+    }
+
     .about-img-wrap {
       width: 100%;
       max-width: 100%;
