@@ -1250,7 +1250,7 @@
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     z-index: var(--z-modal);
-    display: flex;
+    display: none; /* hidden by default */
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -1258,8 +1258,10 @@
   }
 
   .lightbox:not([hidden]) {
+    display: flex;
     opacity: 1;
   }
+
 
   .lightbox-img-wrap {
     width: 90vw;

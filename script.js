@@ -510,7 +510,7 @@ function initScrollAnimations() {
     if (track && panels.length > 0) {
       const walkDistance = () => track.scrollWidth - window.innerWidth;
 
-      gsap.to(panels, {
+      gsap.to(track, {
         x: () => -walkDistance(),
         ease: 'none',
         scrollTrigger: {
