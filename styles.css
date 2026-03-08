@@ -1022,34 +1022,15 @@
     gap: var(--space-2xl);
   }
 
-  @media (min-width: 1025px) {
-    .h-scroll-pin {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .h-scroll-track {
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      padding: 0 var(--space-2xl);
-      align-items: center;
-      width: max-content;
-      gap: 0;
-    }
-  }
-
   .h-panel {
-    width: 80vw;
-    max-width: 1000px;
-    /* Use dynamic height that respects viewport but allows content to fit */
-    height: 100%;
-    max-height: 80vh;
+    width: 100%;
+    /* Mobile: Let content dictate height, stack vertically */
+    height: auto;
     display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-    padding: var(--space-xl);
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: var(--space-l);
+    padding: var(--space-m) 0;
     flex-shrink: 0;
   }
 
@@ -1058,6 +1039,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
   }
 
   .h-panel-num {
@@ -1087,8 +1069,8 @@
 
   .h-panel-img-wrap {
     flex: 1;
-    height: 100%;
-    max-height: 60vh;
+    width: 100%;
+    height: 60vh;
     border-radius: var(--radius-sm);
     overflow: hidden;
     display: flex;
@@ -1099,6 +1081,40 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (min-width: 1025px) {
+    .h-scroll-pin {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .h-scroll-track {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      padding: 0 var(--space-2xl);
+      align-items: center;
+      width: max-content;
+      gap: 0;
+    }
+
+    .h-panel {
+      width: 80vw;
+      max-width: 1000px;
+      height: 100%;
+      max-height: 80vh;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-xl);
+      padding: var(--space-xl);
+    }
+    
+    .h-panel-img-wrap {
+      max-height: 60vh;
+      height: 100%;
+    }
   }
 
   /* --- Services --- */
