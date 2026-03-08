@@ -1855,8 +1855,14 @@
     object-fit: cover;
   }
 
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   .h-scroll-section {
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 
   .h-scroll-pin {
@@ -1916,16 +1922,10 @@
 
 @media (max-width: 768px) {
 
-  /* Wrap nav on mobile instead of hiding or overflowing */
-  .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-s) var(--space-m);
-    width: 100%;
-    padding-top: var(--space-s);
-    margin-left: 0;
-    /* Remove explicit margin that pushes it */
+  /* Hide desktop nav-links on small screens — use hamburger instead */
+  .nav-links,
+  .nav-cta {
+    display: none !important;
   }
 
   .navbar {
