@@ -244,49 +244,49 @@ function initApp() {
     el.innerHTML = words.map(w => `<span class="split-word" style="display:inline-block; clip-path:inset(0 0 100% 0); transform:translateY(100%);"> ${w} </span>`).join('');
   });
 
-  const tlLoader = gsap.timeline({
-    onComplete: () => {
-      document.getElementById('loader').style.display = 'none';
-      state.isLoading = false;
-      initScrollAnimations();
-    }
-  });
+  const tlLoader = gsap.timeline();
 
   // Loader sequence
-  tlLoader.to('.loader-logo', { opacity: 1, duration: 1, ease: 'power2.inOut' })
-    .to('.loader-tagline', { opacity: 1, duration: 1, ease: 'power2.inOut' }, "-=0.5")
-    .to('.loader-bar-wrap', { opacity: 1, duration: 0.5 })
-    .to('.loader-bar', { x: '0%', duration: 1.5, ease: 'power3.inOut' })
-    .to('.loader-inner', { opacity: 0, y: -20, duration: 0.6, ease: 'power2.in' }, "+=0.2")
+  tlLoader.to('.loader-logo', { opacity: 1, duration: 0.8, ease: 'power2.out' })
+    .to('.loader-tagline', { opacity: 1, duration: 0.8, ease: 'power2.out' }, "-=0.4")
+    .to('.loader-bar-wrap', { opacity: 1, duration: 0.3 }, "-=0.6")
+    .to('.loader-bar', { x: '0%', duration: 1.0, ease: 'power3.inOut' }, "-=0.6")
+    .to('.loader-inner', { opacity: 0, y: -20, duration: 0.4, ease: 'power2.in' }, "+=0.2")
     // Reveal Curtain
     .to('#loaderCurtain', {
       scaleY: 0,
-      duration: 1.2,
+      transformOrigin: 'top',
+      duration: 1.0,
       ease: 'expo.inOut'
+    })
+    .call(() => {
+      document.getElementById('loader').style.display = 'none';
+      state.isLoading = false;
+      initScrollAnimations();
     })
     // Hero Image Opacity Reveal
     .to('.hero-img', {
       opacity: 1,
-      duration: 1.5,
-      ease: 'power2.inOut'
-    }, "-=1")
+      duration: 1.2,
+      ease: 'power2.out'
+    }, "-=1.0")
     // Hero Background Premium Scale (Ken Burns)
     .fromTo('.hero-bg',
       { scale: 1.15 },
-      { scale: 1, duration: 4, ease: 'power2.out' }
-      , "-=1.5")
+      { scale: 1, duration: 3.5, ease: 'power2.out' }
+      , "-=1.2")
     // Hero Text Entrances
     .to('.split-word', {
       clipPath: 'inset(0 0 0% 0)',
       y: 0,
       duration: 1,
-      stagger: 0.1,
+      stagger: 0.05,
       ease: 'expo.out'
-    }, "-=0.4")
-    .to('.hero-pretitle', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.8")
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.6")
-    .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=0.4")
-    .to('.hero-scroll-hint', { opacity: 1, duration: 1 }, "-=0.2");
+    }, "-=2.5")
+    .to('.hero-pretitle', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.8")
+    .to('.hero-sub', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.6")
+    .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.4")
+    .to('.hero-scroll-hint', { opacity: 1, duration: 1, ease: 'power2.out' }, "-=2.2");
 }
 
 // Simulate network load

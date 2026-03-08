@@ -380,7 +380,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-bg-base);
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .loader-inner,
+  .loader-curtain {
+    pointer-events: auto;
   }
 
   .loader-inner {
