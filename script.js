@@ -55,11 +55,9 @@ const db = {
   },
   gallery: [
     { src: 'ruben.jpg', alt: 'Fade premium cu contur de barbă' },
-    { src: 'ruben.jpg', alt: 'Tunsoare clasică executată din foarfecă' },
-    { src: 'ruben.jpg', alt: 'Ritual bărbierit cu prosop fierbinte' },
-    { src: 'ruben.jpg', alt: 'Detalii instrumentar frizerie' },
-    { src: 'ruben.jpg', alt: 'Clipper work pe păr des' },
-    { src: 'ruben.jpg', alt: 'Atmosferă interior Ruben Barbershop' }
+    { src: 'interior.jpg', alt: 'Atmosferă interior Ruben Barbershop' },
+    { src: 'interior 2.jpg', alt: 'Detalii instrumentar frizerie' },
+    { src: '494042530_1264233712374738_5349152281157974274_n.jpg', alt: 'Măiestrie autentică' }
   ],
   testimonials: [
     { name: 'Andrei Popa', initial: 'A', text: 'Singurul loc din Cluj unde mă pot relaxa cu adevărat. Tunsorile sunt mereu impecabile, iar atmosfera este de nota 10.' },
@@ -525,15 +523,15 @@ function initScrollAnimations() {
 
     // Gallery Parallax
     gsap.utils.toArray('.gallery-item').forEach((item, i) => {
-      // Alternate columns up/down
-      const dir = (i % 2 === 0) ? -50 : 50;
+      // Alternate columns up/down with a stronger effect
+      const dir = (i % 2 === 0) ? -120 : 120;
       gsap.to(item, {
         y: dir,
         scrollTrigger: {
           trigger: '.gallery',
           start: 'top bottom',
           end: 'bottom top',
-          scrub: 0.5
+          scrub: 1.5 // Smoother, longer lerp
         }
       });
     });
