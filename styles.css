@@ -1231,10 +1231,6 @@
     display: flex;
     align-items: flex-end;
     gap: var(--space-s);
-    /* GSAP init state */
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: transform, opacity;
   }
 
   .service-info {
