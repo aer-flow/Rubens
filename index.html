@@ -4,87 +4,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruben's Barbershop – Frizerie de Lux în Cluj-Napoca</title>
+    <meta name="description"
+        content="Ruben's Barbershop – frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux. Rezervă-ți locul acum." />
+    <link rel="canonical" href="https://aer-flow.github.io/Rubens/" />
 
-    <!-- CLIENT CONFIG — must load first, synchronously, before any other script -->
-    <script src="client.config.js"></script>
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Ruben's Barbershop" />
+    <meta property="og:title" content="Ruben's Barbershop – Cluj-Napoca" />
+    <meta property="og:description"
+        content="Frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux." />
+    <meta property="og:image" content="https://aer-flow.github.io/Rubens/logo.jpg" />
+    <meta property="og:image:secure_url" content="https://aer-flow.github.io/Rubens/logo.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1570" />
+    <meta property="og:image:height" content="1569" />
+    <meta property="og:image:alt" content="Ruben's Barbershop Logo" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aer-flow.github.io/Rubens/" />
 
-    <!-- Dynamic Head: title, meta, OG, schema populated from CLIENT config -->
-    <script>
-      (function () {
-        var c = CLIENT;
-
-        // Title + description
-        document.documentElement.setAttribute('lang', c.lang || 'ro');
-        document.title = c.name + ' – ' + c.tagline;
-        var desc = document.createElement('meta');
-        desc.name = 'description'; desc.content = c.metaDescription;
-        document.head.appendChild(desc);
-
-        // Canonical
-        var can = document.createElement('link');
-        can.rel = 'canonical'; can.href = c.canonicalUrl;
-        document.head.appendChild(can);
-
-        // Open Graph
-        var og = [
-          ['og:site_name', c.name],
-          ['og:title',     c.name + ' – ' + c.address.city],
-          ['og:description', c.metaDescription],
-          ['og:image',     c.siteUrl + c.ogImage],
-          ['og:image:secure_url', c.siteUrl + c.ogImage],
-          ['og:image:type', 'image/jpeg'],
-          ['og:type',  'website'],
-          ['og:url',   c.canonicalUrl],
-        ];
-        og.forEach(function(pair) {
-          var m = document.createElement('meta');
-          m.setAttribute('property', pair[0]); m.content = pair[1];
-          document.head.appendChild(m);
-        });
-
-        // Twitter Card
-        var tw = [
-          ['twitter:card',        'summary_large_image'],
-          ['twitter:title',       c.name + ' – ' + c.address.city],
-          ['twitter:description', c.metaDescription],
-          ['twitter:image',       c.siteUrl + c.ogImage],
-        ];
-        tw.forEach(function(pair) {
-          var m = document.createElement('meta');
-          m.name = pair[0]; m.content = pair[1];
-          document.head.appendChild(m);
-        });
-
-        // Schema.org JSON-LD
-        var hoursSchema = c.hours
-          .filter(function(h){ return h.time !== 'Închis'; })
-          .map(function(h){ return h.days.replace('Lun – Vin','Mo-Fr').replace('Sâmbătă','Sa') + ' ' + h.time.replace(' – ','-'); });
-        var schema = {
-          '@context': 'https://schema.org',
-          '@type': 'HairSalon',
-          name: c.name,
-          description: c.metaDescription,
-          url: c.siteUrl,
-          telephone: c.phone,
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: c.address.street,
-            addressLocality: c.address.city,
-            addressRegion: c.address.city.replace('-Napoca',''),
-            postalCode: c.address.zip,
-            addressCountry: c.address.country,
-          },
-          openingHours: hoursSchema,
-          priceRange: '$$',
-          image: c.siteUrl + c.aboutImage,
-          geo: { '@type': 'GeoCoordinates', latitude: c.geo.lat, longitude: c.geo.lng },
-        };
-        var ld = document.createElement('script');
-        ld.type = 'application/ld+json';
-        ld.text = JSON.stringify(schema);
-        document.head.appendChild(ld);
-      })();
-    </script>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ruben's Barbershop – Cluj-Napoca" />
+    <meta name="twitter:description"
+        content="Frizerie premium în Cluj-Napoca. Tunsori bărbătești, beard grooming și servicii de îngrijire de lux." />
+    <meta name="twitter:image" content="https://aer-flow.github.io/Rubens/logo.jpg" />
 
     <!-- Fonts: Inter (Body) & Playfair Display (Headings) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,7 +47,35 @@
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=35" />
+    <link rel="stylesheet" href="styles.css?v=34" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Ruben's Barbershop",
+    "description": "Frizerie premium în Cluj-Napoca, specializată în tunsori bărbătești și beard grooming.",
+    "url": "https://rubensbarbershop.ro",
+    "telephone": "+40741234567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Strada Eroilor 14",
+      "addressLocality": "Cluj-Napoca",
+      "addressRegion": "Cluj",
+      "postalCode": "400129",
+      "addressCountry": "RO"
+    },
+    "openingHours": ["Mo-Fr 09:00-20:00", "Sa 09:00-18:00"],
+    "priceRange": "$$",
+    "image": "https://rubensbarbershop.ro/ruben.jpg",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 46.7712,
+      "longitude": 23.6236
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -115,10 +87,10 @@
     <div id="loader" aria-hidden="true">
         <div class="loader-inner">
             <div class="loader-logo">
-                <img id="loaderLogo" src="" alt="" width="180" height="auto"
+                <img src="logo.jpg" alt="Ruben's Barbershop Logo" width="180" height="auto"
                     style="margin: 0 auto; filter: invert(1);" />
             </div>
-            <div class="loader-tagline" id="loaderTagline"></div>
+            <div class="loader-tagline">Frizerie · Cluj-Napoca</div>
             <div class="loader-bar-wrap">
                 <div class="loader-bar" id="loaderBar"></div>
             </div>
@@ -137,17 +109,17 @@
 
     <!-- ═══════════════ NAVBAR ═══════════════ -->
     <header class="navbar" id="navbar" role="banner">
-        <a href="#hero" class="nav-logo" id="navLogo" aria-label="">
-            <img id="navLogoImg" src="" alt="" width="120" height="auto" style="filter: invert(1);" />
+        <a href="#hero" class="nav-logo" aria-label="Ruben's Barbershop – pagina principală">
+            <img src="logo.jpg" alt="Ruben's" width="120" height="auto" style="filter: invert(1);" />
         </a>
         <nav class="nav-links" role="navigation" aria-label="Navigare principală">
-            <a href="#despre"      class="nav-link" data-section="despre">Despre</a>
-            <a href="#servicii"    class="nav-link" data-section="servicii">Servicii</a>
-            <a href="#galerie"     class="nav-link" data-section="galerie">Portofoliu</a>
+            <a href="#despre" class="nav-link" data-section="despre">Despre</a>
+            <a href="#servicii" class="nav-link" data-section="servicii">Servicii</a>
+            <a href="#galerie" class="nav-link" data-section="galerie">Portofoliu</a>
             <a href="#testimoniale" class="nav-link" data-section="testimoniale">Testimoniale</a>
-            <a href="#contact"     class="nav-link" data-section="contact">Contact</a>
+            <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </nav>
-        <a id="navCta" href="" target="_blank" rel="noopener noreferrer" class="nav-cta btn-primary" aria-label=""></a>
+        <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="nav-cta btn-primary" id="navCta" aria-label="Programează-te pe Mero">Programează-te</a>
         <button class="hamburger" id="hamburger" aria-label="Deschide meniu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -156,12 +128,12 @@
     <!-- Mobile Nav Overlay -->
     <div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Meniu mobil">
         <nav class="mobile-nav-links">
-            <a href="#despre"       class="mobile-nav-link">Despre</a>
-            <a href="#servicii"     class="mobile-nav-link">Servicii</a>
-            <a href="#galerie"      class="mobile-nav-link">Portofoliu</a>
+            <a href="#despre" class="mobile-nav-link">Despre</a>
+            <a href="#servicii" class="mobile-nav-link">Servicii</a>
+            <a href="#galerie" class="mobile-nav-link">Portofoliu</a>
             <a href="#testimoniale" class="mobile-nav-link">Testimoniale</a>
-            <a href="#contact"      class="mobile-nav-link">Contact</a>
-            <a id="mobileNavCta" href="" target="_blank" rel="noopener noreferrer" class="btn-primary mobile-nav-cta"></a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary mobile-nav-cta" id="mobileNavCta">Programează-te</a>
         </nav>
     </div>
 
@@ -170,7 +142,8 @@
         <!-- ═══════════════ HERO ═══════════════ -->
         <section class="hero" id="hero" aria-label="Secțiunea principală">
             <div class="hero-bg">
-                <img id="heroImg" src="" alt="" class="hero-img" width="1920" height="1080" fetchpriority="high" />
+                <img src="interior.jpg" alt="Interior Ruben's Barbershop Cluj-Napoca" class="hero-img" width="1920"
+                    height="1080" fetchpriority="high" />
                 <div class="hero-overlay"></div>
                 <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
                 <div class="hero-vignette"></div>
@@ -180,12 +153,12 @@
 
             <div class="hero-content">
                 <h1 class="hero-title" id="heroTitle">
-                    <span class="hero-line hero-line--accent" id="heroLine1"></span>
-                    <span class="hero-line hero-line--thin" id="heroLine2"></span>
+                    <span class="hero-line hero-line--accent">Ruben's</span>
+                    <span class="hero-line">Barbershop.</span>
                 </h1>
                 <div class="hero-actions" id="heroActions">
-                    <a id="heroCta" href="" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large"></a>
-                    <a href="#despre" class="btn-ghost btn-large">Experiența <span id="heroGhostName"></span></a>
+                    <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large" id="heroCta">Programează-te</a>
+                    <a href="#despre" class="btn-ghost btn-large">Experiența Ruben's</a>
                 </div>
                 <div class="hero-decor-line hero-decor-line--left" aria-hidden="true"></div>
                 <div class="hero-decor-line hero-decor-line--right" aria-hidden="true"></div>
@@ -200,22 +173,75 @@
         <!-- ═══════════════ MARQUEE STRIP ═══════════════ -->
         <div class="marquee-section" aria-hidden="true">
             <div class="marquee-track">
-                <div class="marquee-content" id="marqueeContent1"></div>
-                <div class="marquee-content" id="marqueeContent2" aria-hidden="true"></div>
+                <div class="marquee-content">
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                    <span>Tunsoare Clasică</span><span class="marquee-dot">·</span>
+                    <span>Beard Grooming</span><span class="marquee-dot">·</span>
+                    <span>Fade Premium</span><span class="marquee-dot">·</span>
+                    <span>Hair Design</span><span class="marquee-dot">·</span>
+                    <span>Bărbierit Tradițional</span><span class="marquee-dot">·</span>
+                    <span>Skin Fade</span><span class="marquee-dot">·</span>
+                </div>
+            </div>
+            <div class="marquee-track marquee-track--reverse">
+                <div class="marquee-content">
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                    <span>Cluj-Napoca</span><span class="marquee-dot">·</span>
+                    <span>Premium Barbershop</span><span class="marquee-dot">·</span>
+                    <span>Since 2018</span><span class="marquee-dot">·</span>
+                    <span>Men's Grooming</span><span class="marquee-dot">·</span>
+                    <span>Hot Towel Shave</span><span class="marquee-dot">·</span>
+                </div>
             </div>
         </div>
 
-        <!-- ═══════════════ DESPRE / ABOUT ═══════════════ -->
+        <!-- ═══════════════ ABOUT ═══════════════ -->
         <section class="about" id="despre" aria-label="Despre noi">
             <div class="container">
                 <div class="about-grid">
-                    <div class="about-media reveal-scale">
-                        <div class="about-img-wrap reveal-scale" data-lenis-prevent>
-                            <img id="aboutImg" src="" alt="" loading="lazy" class="about-img"
-                                width="800" height="1000" />
+                    <div class="about-media">
+                        <div class="about-img-wrap">
+                            <img src="494042530_1264233712374738_5349152281157974274_n.jpg"
+                                alt="Ruben, maestrul frizer din Cluj-Napoca" class="about-img" width="800" height="1000"
+                                loading="lazy" />
                             <div class="about-img-badge">
-                                <span class="badge-num" id="badgeNum"></span>
-                                <span class="badge-text" id="badgeLabel"></span>
+                                <span class="badge-num">7+</span>
+                                <span class="badge-text">Ani de Experiență</span>
                             </div>
                         </div>
                         <div class="about-floater" aria-hidden="true">
@@ -223,13 +249,104 @@
                         </div>
                     </div>
                     <div class="about-copy">
-                        <div class="section-pretitle reveal-up" id="aboutPreTitle"></div>
-                        <h2 class="section-title reveal-up" id="aboutTitle"></h2>
-                        <blockquote class="pull-quote reveal-up" id="aboutPullQuote"></blockquote>
-                        <p class="about-text reveal-up" id="aboutP1"></p>
-                        <p class="about-text reveal-up" id="aboutP2"></p>
-                        <div class="about-stats reveal-up" id="aboutStats"></div>
+                        <div class="section-pretitle reveal-up">Salutare!</div>
+                        <h2 class="section-title reveal-up">Bun venit la<br /><em>Ruben's.</em></h2>
+                        <blockquote class="pull-quote reveal-up">
+                            „Un frizer bun nu doar te tunde, ci<br />
+                            <em>te ascultă.</em>"
+                        </blockquote>
+                        <p class="about-text reveal-up">
+                            Ruben's Barbershop este locul din Cluj-Napoca unde venim să ne deconectăm. Aici, o
+                            programare nu e doar o sarcină pe lista de zi cu zi, ci un moment de pauză, cu o cafea bună,
+                            discuții relaxate și, evident, o tunsoare impecabilă.
+                        </p>
+                        <p class="about-text reveal-up">
+                            Te așteptăm într-un spațiu prietenos unde punem preț pe tehnică, detalii și pe ceea ce ți se
+                            potrivește cel mai bine. Fără grabă, doar pasiune pentru meserie.
+                        </p>
+                        <div class="about-stats reveal-up">
+                            <div class="stat">
+                                <span class="stat-num" data-count="2500">0</span>
+                                <span class="stat-label">Clienți Fericiți</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num" data-count="7">0</span>
+                                <span class="stat-label">Ani Experiență</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-num" data-count="15">0</span>
+                                <span class="stat-label">Servicii Oferite</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ HORIZONTAL SCROLL / STORY ═══════════════ -->
+        <section class="h-scroll-section" id="povestea" aria-label="Aspectele meseriei">
+            <div class="h-scroll-pin" id="hScrollPin">
+                <div class="h-scroll-track" id="hScrollTrack">
+
+                    <div class="h-panel h-panel--intro">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">01</div>
+                            <h2 class="h-panel-title">Măiestrie<br /><em>Autentică</em></h2>
+                            <p class="h-panel-text">Fiecare client primește atenție individualizată. Adaptăm stilul la
+                                personalitatea și fizionomia ta, asigurându-ne că pleci exact cu vibe-ul pe care îl
+                                doreai.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <!-- Mobile Floating Hint -->
+                            <div class="h-scroll-hint-float">
+                                <i class="ph ph-arrow-right"></i>
+                            </div>
+                            <img src="interior.jpg" alt="Interior cald din frizerie" class="h-panel-img" loading="lazy"
+                                width="600" height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--craft">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">02</div>
+                            <h2 class="h-panel-title">Instrumente<br /><em>de Calitate</em></h2>
+                            <p class="h-panel-text">Lucrăm cu echipamente profesioniste și produse calitative, pentru ca
+                                Fade-ul să iasă mereu curat și conturul precis.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="interior 2.jpg" alt="Instrumente profesionale de barbier" class="h-panel-img"
+                                loading="lazy" width="600" height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--ritual">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">03</div>
+                            <h2 class="h-panel-title">Fără<br /><em>Grabă</em></h2>
+                            <p class="h-panel-text">La noi, accentul pică pe calitate, nu pe cantitate. Timpul alocat
+                                ție este respectat pe deplin, de la spălatul pe cap relaxant, până la styling-ul final.
+                            </p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="494042530_1264233712374738_5349152281157974274_n.jpg" alt="Rutina de tuns"
+                                class="h-panel-img" loading="lazy" width="600" height="800" />
+                        </div>
+                    </div>
+
+                    <div class="h-panel h-panel--atelier">
+                        <div class="h-panel-content">
+                            <div class="h-panel-num">04</div>
+                            <h2 class="h-panel-title">Atelierul<br /><em>Tău</em></h2>
+                            <p class="h-panel-text">Spațiul nostru a fost amenajat special pentru a te face să te simți
+                                confortabil. Muzică bună pe fundal, loc berechet de socializare și vibes bune în inima
+                                orașului.</p>
+                        </div>
+                        <div class="h-panel-img-wrap">
+                            <img src="interior.jpg" alt="Interiorul Ruben's Barbershop" class="h-panel-img"
+                                loading="lazy" width="600" height="800" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -240,6 +357,7 @@
                 <div class="section-header reveal-up">
                     <h2 class="section-title">Servicii<br /><em>Oferite</em></h2>
                 </div>
+
                 <div class="service-menu-wrapper" id="servicesMenuContainer">
                     <!-- JS rendered compact list -->
                 </div>
@@ -262,8 +380,26 @@
 
         <!-- ═══════════════ STATS STRIP ═══════════════ -->
         <section class="stats-strip" id="stats" aria-label="Statistici">
-            <div class="stats-strip-inner" id="statsStripInner">
-                <!-- JS rendered -->
+            <div class="stats-strip-inner">
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="2500">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Clienți Mulțumiți</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="7">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Ani Experiență</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="98">0</span><span class="stat-big-suffix">%</span>
+                    <span class="stat-big-label">Satisfacție</span>
+                </div>
+                <div class="stat-divider" aria-hidden="true"></div>
+                <div class="stat-big reveal-up">
+                    <span class="stat-big-num" data-count="15">0</span><span class="stat-big-suffix">+</span>
+                    <span class="stat-big-label">Premii Locale</span>
+                </div>
             </div>
         </section>
 
@@ -289,7 +425,7 @@
             <div class="container">
                 <div class="section-header reveal-up">
                     <div class="section-pretitle">Vino Să Ne Vizitezi</div>
-                    <h2 class="section-title">Găsește-ne<br /><em id="contactCityTitle"></em></h2>
+                    <h2 class="section-title">Găsește-ne<br /><em>în Cluj</em></h2>
                 </div>
                 <div class="contact-grid">
                     <div class="contact-details reveal-up">
@@ -297,41 +433,42 @@
                             <i class="ph ph-map-pin" aria-hidden="true"></i>
                             <div>
                                 <strong>Adresă</strong>
-                                <p id="contactAddress"></p>
+                                <p>Strada Eroilor 14,<br />Cluj-Napoca, 400129</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="ph ph-clock" aria-hidden="true"></i>
                             <div>
                                 <strong>Program</strong>
-                                <p id="contactHours"></p>
+                                <p>Lun – Vin: 09:00 – 20:00<br />Sâmbătă: 09:00 – 18:00<br />Duminică: Închis</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="ph ph-phone" aria-hidden="true"></i>
                             <div>
                                 <strong>Telefon</strong>
-                                <p><a id="contactPhone" href=""></a></p>
+                                <p><a href="tel:+40741234567">+40 741 234 567</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="ph ph-instagram-logo" aria-hidden="true"></i>
                             <div>
                                 <strong>Instagram</strong>
-                                <p><a id="contactInstagram" href="" target="_blank" rel="noopener"></a></p>
+                                <p><a href="https://instagram.com/rubensbarbershop" target="_blank"
+                                        rel="noopener">@rubensbarbershop</a></p>
                             </div>
                         </div>
-                        <a id="contactCta" href="" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large contact-cta">
-                            Rezervă un loc acum
+                        <a href="https://mero.ro/p/rubens-barbershop" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large contact-cta" id="contactCta">
+                            Rezolvă un loc acum
                         </a>
                     </div>
                     <div class="contact-map reveal-scale">
                         <div class="map-wrap">
-                            <iframe id="contactMap"
-                                src=""
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.9!2d23.6236!3d46.7712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490c1f6d24f035%3A0x6ce9c0a83d17cc6c!2sCluj-Napoca!5e0!3m2!1sro!2sro!4v1709900000000"
                                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"
-                                title="Locația pe hartă"></iframe>
+                                title="Locația Ruben's Barbershop pe hartă"></iframe>
                             <div class="map-overlay" aria-hidden="true"></div>
                         </div>
                     </div>
@@ -344,16 +481,29 @@
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer" role="contentinfo">
-        <div class="footer-brand-hero" id="footerBrandHero" aria-hidden="true"></div>
+        <div class="footer-brand-hero" aria-hidden="true">RUBEN'S</div>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col footer-col--brand">
                     <div class="footer-logo">
-                        <img id="footerLogo" src="" alt="" width="140" height="auto"
+                        <img src="logo.jpg" alt="Ruben's Logo" width="140" height="auto"
                             style="filter: invert(1); margin-bottom: 20px;" />
                     </div>
-                    <p class="footer-tagline" id="footerTagline"></p>
-                    <div class="footer-social" id="footerSocial"></div>
+                    <p class="footer-tagline">Atmosferă relaxată și<br />tunsori impecabile, în inima Clujului.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="Instagram Ruben's Barbershop">
+                            <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://facebook.com/rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="Facebook Ruben's Barbershop">
+                            <i class="ph ph-facebook-logo" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://tiktok.com/@rubensbarbershop" target="_blank" rel="noopener"
+                            aria-label="TikTok Ruben's Barbershop">
+                            <i class="ph ph-tiktok-logo" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h3 class="footer-col-title">Navigare</h3>
@@ -367,30 +517,44 @@
                 </div>
                 <div class="footer-col">
                     <h3 class="footer-col-title">Servicii</h3>
-                    <ul class="footer-links" id="footerServices"></ul>
+                    <ul class="footer-links">
+                        <li><a href="#servicii">Tunsoare Clasică</a></li>
+                        <li><a href="#servicii">Fade Premium</a></li>
+                        <li><a href="#servicii">Beard Grooming</a></li>
+                        <li><a href="#servicii">Bărbierit Tradițional</a></li>
+                        <li><a href="#servicii">Combo</a></li>
+                    </ul>
                 </div>
                 <div class="footer-col">
                     <h3 class="footer-col-title">Contact</h3>
-                    <address class="footer-address" id="footerAddress"></address>
+                    <address class="footer-address">
+                        Str. Eroilor 14<br />
+                        Cluj-Napoca, 400129<br />
+                        <a href="tel:+40741234567">+40 741 234 567</a><br />
+                        <a href="mailto:contact@rubensbarbershop.ro">contact@rubensbarbershop.ro</a>
+                    </address>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-legal">© <span id="footerYear"></span> <span id="footerLegal"></span>. Toate drepturile rezervate.</p>
-                <p class="footer-credit" id="footerCredit"></p>
+                <p class="footer-legal">© <span id="footerYear"></span> Ruben's Barbershop. Toate drepturile rezervate.
+                </p>
+                <p class="footer-credit">Cluj-Napoca, România</p>
             </div>
         </div>
     </footer>
 
-    <!-- Mero Booking Widget — ID injected from CLIENT config -->
+    <!-- Mero Booking Widget -->
     <script>
       (function (w, d, s, o, f, js, fjs) {
         w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
         js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
         js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
       }(window, document, 'script', 'mero', 'https://widget.mero.ro/js/widget.js'));
-      mero('init', { id: CLIENT.bookingWidgetId });
+      mero('init', {
+        id: 'rubens-barbershop'
+      });
     </script>
-    <script src="script.js?v=35" defer></script>
+    <script src="script.js?v=31" defer></script>
 </body>
 
 </html>
