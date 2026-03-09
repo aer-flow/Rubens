@@ -49,7 +49,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=23" />
+    <link rel="stylesheet" href="styles.css?v=24" />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -360,26 +360,8 @@
                     <h2 class="section-title">Servicii<br /><em>Oferite</em></h2>
                 </div>
 
-                <!-- Tabs -->
-                <div class="services-tabs" role="tablist" aria-label="Categorii de servicii">
-                    <button class="tab-btn active" data-tab="tunsori" role="tab" aria-selected="true"
-                        aria-controls="tab-tunsori" id="tab-btn-tunsori">Tunsori</button>
-                    <button class="tab-btn" data-tab="barba" role="tab" aria-selected="false" aria-controls="tab-barba"
-                        id="tab-btn-barba">Barbă</button>
-                    <button class="tab-btn" data-tab="combo" role="tab" aria-selected="false" aria-controls="tab-combo"
-                        id="tab-btn-combo">Combo</button>
-                    <div class="tab-indicator" id="tabIndicator"></div>
-                </div>
-
-                <!-- Tab panels -->
-                <div class="tab-panel active" id="tab-tunsori" role="tabpanel" aria-labelledby="tab-btn-tunsori">
-                    <div class="services-grid" id="servicesGrid"></div>
-                </div>
-                <div class="tab-panel" id="tab-barba" role="tabpanel" aria-labelledby="tab-btn-barba">
-                    <div class="services-grid" id="servicesGridBarba"></div>
-                </div>
-                <div class="tab-panel" id="tab-combo" role="tabpanel" aria-labelledby="tab-btn-combo">
-                    <div class="services-grid" id="servicesGridCombo"></div>
+                <div class="service-menu-wrapper" id="servicesMenuContainer">
+                    <!-- JS rendered compact list -->
                 </div>
             </div>
         </section>
@@ -391,27 +373,12 @@
                     <div class="section-pretitle">Lucrările Noastre</div>
                     <h2 class="section-title">Portofoliu<br /><em>Tunsori</em></h2>
                 </div>
-                <div class="gallery-masonry" id="galleryGrid" role="list">
-                    <!-- JS rendered -->
+                <div class="portfolio-accordion" id="galleryAccordion" role="list">
+                    <!-- JS rendered accordion slices -->
                 </div>
             </div>
         </section>
 
-        <!-- Lightbox -->
-        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagine mărită" hidden>
-            <button class="lightbox-close" id="lightboxClose" aria-label="Închide imaginea">
-                <i class="ph ph-x" aria-hidden="true"></i>
-            </button>
-            <button class="lightbox-prev" id="lightboxPrev" aria-label="Imaginea anterioară">
-                <i class="ph ph-caret-left" aria-hidden="true"></i>
-            </button>
-            <button class="lightbox-next" id="lightboxNext" aria-label="Imaginea următoare">
-                <i class="ph ph-caret-right" aria-hidden="true"></i>
-            </button>
-            <div class="lightbox-img-wrap">
-                <img src="" alt="" id="lightboxImg" class="lightbox-img" />
-            </div>
-        </div>
 
         <!-- ═══════════════ STATS STRIP ═══════════════ -->
         <section class="stats-strip" id="stats" aria-label="Statistici">
@@ -589,7 +556,7 @@
         id: 'rubens-barbershop'
       });
     </script>
-    <script src="script.js?v=23" defer></script>
+    <script src="script.js?v=24" defer></script>
 </body>
 
 </html>

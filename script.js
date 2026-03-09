@@ -72,38 +72,48 @@ const db = {
 // ==========================================================================
 
 function renderServices() {
-  const tGrid = document.getElementById('servicesGrid');
-  const bGrid = document.getElementById('servicesGridBarba');
-  const cGrid = document.getElementById('servicesGridCombo');
+  const container = document.getElementById('servicesMenuContainer');
+  if (!container) return;
 
-  const createCard = (item) => `
-    <div class="service-card GSAP-service">
-      <div class="service-header">
-        <h3 class="service-title">${item.name}</h3>
-        <span class="service-price">${item.price}</span>
+  const createRow = (item) => `
+    <div class="service-row GSAP-service">
+      <div class="service-info">
+        <h4 class="service-name">${item.name}</h4>
+        <p class="service-desc">${item.desc}</p>
       </div>
-      <p class="service-desc">${item.desc}</p>
-      <div class="service-time"><i class="ph ph-clock"></i>${item.time}</div>
+      <div class="service-dots"></div>
+      <div class="service-price">${item.price}</div>
     </div>
   `;
 
-  if (tGrid) tGrid.innerHTML = db.services.tunsori.map(createCard).join('');
-  if (bGrid) bGrid.innerHTML = db.services.barba.map(createCard).join('');
-  if (cGrid) cGrid.innerHTML = db.services.combo.map(createCard).join('');
+  const tunsoriHTML = `<div class="service-category"><h3 class="category-title">Tunsori</h3>${db.services.tunsori.map(createRow).join('')}</div>`;
+  const barbaHTML = `<div class="service-category"><h3 class="category-title">Barbă</h3>${db.services.barba.map(createRow).join('')}</div>`;
+  const comboHTML = `<div class="service-category"><h3 class="category-title">Combo</h3>${db.services.combo.map(createRow).join('')}</div>`;
+
+  container.innerHTML = tunsoriHTML + barbaHTML + comboHTML;
 }
 
 function renderGallery() {
-  const grid = document.getElementById('galleryGrid');
-  if (!grid) return;
+  const accordion = document.getElementById('galleryAccordion');
+  if (!accordion) return;
 
-  grid.innerHTML = db.gallery.map((img, i) => `
-    <div class="gallery-item" data-lb-idx="${i}">
-      <img src="${img.src}" alt="${img.alt}" loading="lazy" width="600" height="800" class="gallery-img">
-      <div class="gallery-overlay">
-        <div class="gallery-caption">${img.alt}</div>
-      </div>
+  accordion.innerHTML = db.gallery.map((img, i) => `
+    <div class="portfolio-slice ${i === 0 ? 'active' : ''}" tabindex="0" role="button" aria-expanded="${i === 0}">
+      <img src="${img.src}" alt="Portofoliu Rubens" loading="lazy" class="portfolio-img">
     </div>
   `).join('');
+
+  const slices = accordion.querySelectorAll('.portfolio-slice');
+  slices.forEach(slice => {
+    slice.addEventListener('click', () => {
+      slices.forEach(s => {
+        s.classList.remove('active');
+        s.setAttribute('aria-expanded', 'false');
+      });
+      slice.classList.add('active');
+      slice.setAttribute('aria-expanded', 'true');
+    });
+  });
 }
 
 function renderTestimonials() {
@@ -521,20 +531,7 @@ function initScrollAnimations() {
       });
     }
 
-    // Gallery Parallax
-    gsap.utils.toArray('.gallery-item').forEach((item, i) => {
-      // Alternate columns up/down with a stronger effect
-      const dir = (i % 2 === 0) ? -120 : 120;
-      gsap.to(item, {
-        y: dir,
-        scrollTrigger: {
-          trigger: '.gallery',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5 // Smoother, longer lerp
-        }
-      });
-    });
+    // Gallery Parallax removed for Accordion layout
   });
 
   // 7.6 Staggered Services
@@ -632,82 +629,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-// --- Services Tabs ---
-const tabs = document.querySelectorAll('.tab-btn');
-const panels = document.querySelectorAll('.tab-panel');
-const indicator = document.getElementById('tabIndicator');
-
-function moveIndicator(btn) {
-  indicator.style.width = `${btn.offsetWidth}px`;
-  indicator.style.left = `${btn.offsetLeft}px`;
-}
-
-if (tabs.length) {
-  // Move to first active instantly
-  setTimeout(() => moveIndicator(document.querySelector('.tab-btn.active')), 100);
-
-  window.addEventListener('resize', () => moveIndicator(document.querySelector('.tab-btn.active')));
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active states
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-
-      // Setup current
-      tab.classList.add('active');
-      moveIndicator(tab);
-      const targetPanel = document.getElementById(`tab-${tab.dataset.tab}`);
-      targetPanel.classList.add('active');
-
-      // Stagger animate inner cards of the new panel
-      const cards = targetPanel.querySelectorAll('.GSAP-service');
-      gsap.fromTo(cards,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'expo.out' }
-      );
-    });
-  });
-}
-
-
-// --- Lightbox Logic ---
-const galleryGrid = document.getElementById('galleryGrid');
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightboxImg');
-let currentLbIndex = 0;
-
-if (galleryGrid) {
-  galleryGrid.addEventListener('click', (e) => {
-    const item = e.target.closest('.gallery-item');
-    if (!item) return;
-
-    currentLbIndex = parseInt(item.getAttribute('data-lb-idx'), 10);
-    openLightbox();
-  });
-}
-
-function openLightbox() {
-  lbImg.src = db.gallery[currentLbIndex].src;
-  lbImg.alt = db.gallery[currentLbIndex].alt;
-  lightbox.hidden = false;
-  lenis.stop();
-}
-
-function closeLightbox() {
-  lightbox.hidden = true;
-  lenis.start();
-}
-
-document.getElementById('lightboxClose')?.addEventListener('click', closeLightbox);
-document.getElementById('lightboxPrev')?.addEventListener('click', () => {
-  currentLbIndex = (currentLbIndex - 1 + db.gallery.length) % db.gallery.length;
-  lbImg.src = db.gallery[currentLbIndex].src;
-});
-document.getElementById('lightboxNext')?.addEventListener('click', () => {
-  currentLbIndex = (currentLbIndex + 1) % db.gallery.length;
-  lbImg.src = db.gallery[currentLbIndex].src;
-});
+  // Tabs and Lightbox logic removed as requested styling was simplified
 
 
 
