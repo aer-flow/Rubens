@@ -941,15 +941,15 @@
     right: -20px;
     background: var(--color-accent);
     color: var(--color-bg-base);
-    padding: var(--space-m);
+    padding: var(--space-s);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    width: 156px;
+    height: 156px;
     font-family: var(--font-condensed);
     transform: translateY(20px);
     opacity: 0;
@@ -963,10 +963,11 @@
   }
 
   .badge-text {
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-top: 5px;
+    font-weight: 500;
   }
 
   .pull-quote {
@@ -1750,6 +1751,11 @@
     aspect-ratio: 4 / 5;
     object-fit: contain; /* Prevents awkward cropping inside the wrap */
     pointer-events: none !important; /* Force touch events to pass through to the document */
+  }
+
+  .about-img-badge {
+    right: 10px; /* Remove negative margin to prevent horizontal scroll overflow */
+    bottom: 10px;
   }
 
   /* Clip horizontal bleed on every section except the carousel track */
