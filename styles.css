@@ -986,7 +986,8 @@
   }
 
   .about-stats {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
     margin-top: var(--space-2xl);
     border-top: 1px solid var(--color-border);
@@ -1003,6 +1004,7 @@
     font-size: var(--step-4);
     line-height: 1;
     color: var(--color-text-main);
+    font-variant-numeric: tabular-nums;
   }
 
   .stat-label {
@@ -1336,12 +1338,13 @@
   }
 
   .stats-strip-inner {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 var(--space-l);
+    gap: var(--space-m);
   }
 
   .stat-big {
@@ -1353,6 +1356,7 @@
     font-size: var(--step-5);
     color: var(--color-accent);
     line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
   .stat-big-suffix {
@@ -1798,8 +1802,8 @@
   }
 
   .stats-strip-inner {
-    flex-wrap: wrap;
-    gap: var(--space-l);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l) 0;
   }
 
   .stat-divider {
@@ -1807,7 +1811,7 @@
   }
 
   .stat-big {
-    width: 45%;
+    width: 100%;
   }
 }
 
@@ -1956,6 +1960,11 @@
   .gallery-masonry {
     column-count: 1;
     gap: var(--space-m);
+  }
+
+  .stats-strip-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl) 0;
   }
 
   .stat-big {
