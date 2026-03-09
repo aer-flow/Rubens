@@ -425,22 +425,22 @@ function initApp() {
     // Hero Image Premium Reveal & Scale (Ken Burns)
     .fromTo('.hero-img',
       { opacity: 0, scale: 1.15 },
-      { opacity: 1, scale: 1, duration: 4, ease: 'power2.out' },
+      { opacity: 1, scale: 1, duration: 4.5, ease: 'power2.out' },
       "-=1.0"
     )
     // Hero Text Entrances
     .fromTo('.hero-line', {
       clipPath: 'inset(0 0 100% 0)',
-      y: 20
+      y: 30
     }, {
       clipPath: 'inset(0 0 0% 0)',
       y: 0,
-      duration: 1.2,
-      stagger: 0.1,
-      ease: 'expo.out'
-    }, "-=2.5")
-    .to('.hero-actions', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, "-=2.4")
-    .to('.hero-scroll-hint', { opacity: 1, duration: 1, ease: 'power2.out' }, "-=2.2");
+      duration: 1.4,
+      stagger: 0.15,
+      ease: 'power3.out'
+    }, "-=3.0")
+    .to('.hero-actions', { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, "-=2.4")
+    .to('.hero-scroll-hint', { opacity: 1, duration: 1.2, ease: 'power2.out' }, "-=2.2");
 }
 
 // Simulate network load
@@ -495,8 +495,8 @@ function initScrollAnimations() {
       },
       y: 0,
       opacity: 1,
-      duration: 1,
-      ease: 'expo.out'
+      duration: 1.4,
+      ease: 'power3.out'
     });
   });
 
@@ -508,8 +508,8 @@ function initScrollAnimations() {
       },
       scale: 1,
       opacity: 1,
-      duration: 1.2,
-      ease: 'expo.out'
+      duration: 1.5,
+      ease: 'power3.out'
     });
   });
 
@@ -571,8 +571,8 @@ function initScrollAnimations() {
       gsap.to('.about-img-badge', {
         opacity: 1,
         y: 0,
-        duration: 1,
-        ease: 'expo.out',
+        duration: 1.5,
+        ease: 'power3.out',
         delay: 0.3
       });
     }

@@ -71,6 +71,11 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
+
+  /* Pro Max Checklist: Ensure clickable elements show pointer */
+  a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+    cursor: pointer;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -78,24 +83,24 @@
    -------------------------------------------------------------------------- */
 @layer base {
   :root {
-    /* Colors - Dark Luxury */
-    --color-bg-base: #0a0a0a;
-    --color-bg-alt: #111111;
-    --color-bg-card: rgba(20, 20, 20, 0.4);
+    /* Colors - Liquid Glass Premium Dark */
+    --color-bg-base: #1C1917; /* Rich Black */
+    --color-bg-alt: #282523;  /* Charcoal */
+    --color-bg-card: rgba(28, 25, 23, 0.4);
 
-    --color-text-main: #f5f0eb;
-    --color-text-muted: #a09d98;
+    --color-text-main: #FAFAF9; /* Warm White */
+    --color-text-muted: #A8A29E;
 
-    --color-accent: #c8872a;
-    --color-accent-hover: #e09f3e;
+    --color-accent: #CA8A04; /* Refined Gold */
+    --color-accent-hover: #EAB308;
 
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-glass: rgba(10, 10, 10, 0.65);
+    --color-border: rgba(250, 250, 249, 0.08); /* Warm border */
+    --color-glass: rgba(28, 25, 23, 0.65);
 
     /* Typography */
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'Barlow', sans-serif;
-    --font-condensed: 'Barlow Condensed', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-condensed: 'Inter', sans-serif; /* Inter handles condensed well inherently at lower weights */
 
     /* Fluid Type Scale (clamp) */
     --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
@@ -122,9 +127,9 @@
     --section-pad: clamp(5rem, 10vw, 10rem);
     --nav-height: 90px;
 
-    /* Curves */
-    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-    --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+    /* Curves - Liquid Glass Fluid Transitions */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* Slower, elegant snap */
+    --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
     --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Raduis */
@@ -235,14 +240,15 @@
     padding: 0.8rem 1.8rem;
     font-family: var(--font-condensed);
     font-size: var(--step--1);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     border-radius: var(--radius-sm);
-    transition: all 0.4s var(--ease-out-expo);
+    transition: all 0.5s var(--ease-out-expo);
     position: relative;
     overflow: hidden;
     z-index: 1;
+    cursor: pointer;
   }
 
   .btn-large {
@@ -464,9 +470,11 @@
   }
 
   .navbar.is-scrolled {
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-border);
+    background: rgba(28, 25, 23, 0.7); /* Charcoal base, high transparency */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(250, 250, 249, 0.05); /* Very subtle line */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Deep shadow */
   }
 
   .nav-logo {
@@ -634,10 +642,13 @@
   .hero-overlay {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 10, 0.65);
-    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(28, 25, 23, 0.4) 0%,
+      rgba(28, 25, 23, 0.7) 60%,
+      var(--color-bg-base) 100%
+    );
+    z-index: -1;
   }
 
   .hero-canvas {
