@@ -1749,6 +1749,7 @@
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: contain; /* Prevents awkward cropping inside the wrap */
+    pointer-events: none !important; /* Force touch events to pass through to the document */
   }
 
   /* Clip horizontal bleed on every section except the carousel track */
@@ -1995,7 +1996,7 @@
   .about-img-wrap {
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
 }
 
