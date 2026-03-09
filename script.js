@@ -54,10 +54,11 @@ const db = {
     ]
   },
   gallery: [
-    { src: 'ruben.jpg', alt: 'Fade premium cu contur de barbă' },
-    { src: 'interior.jpg', alt: 'Atmosferă interior Ruben Barbershop' },
-    { src: 'interior 2.jpg', alt: 'Detalii instrumentar frizerie' },
-    { src: '494042530_1264233712374738_5349152281157974274_n.jpg', alt: 'Măiestrie autentică' }
+    { src: '484045637_18287030734221930_8028563917294764098_n.jpg', alt: 'Portofoliu Rubens 1' },
+    { src: '485978470_3493603700779871_6599285106189743720_n.jpg', alt: 'Portofoliu Rubens 2' },
+    { src: '496439457_18292774384221930_1236916832516708478_n (1).jpg', alt: 'Portofoliu Rubens 3' },
+    { src: '625052193_18323419519221930_338710635935787015_n.jpg', alt: 'Portofoliu Rubens 4' },
+    { src: '625295181_18324395506221930_9185861626799876223_n.jpg', alt: 'Portofoliu Rubens 5' }
   ],
   testimonials: [
     { name: 'Andrei Popa', initial: 'A', text: 'Singurul loc din Cluj unde mă pot relaxa cu adevărat. Tunsorile sunt mereu impecabile, iar atmosfera este de nota 10.' },
@@ -76,7 +77,7 @@ function renderServices() {
   if (!container) return;
 
   const createRow = (item) => `
-    <div class="service-row GSAP-service">
+    <div class="service-row">
       <div class="service-info">
         <h4 class="service-name">${item.name}</h4>
         <p class="service-desc">${item.desc}</p>
@@ -86,32 +87,57 @@ function renderServices() {
     </div>
   `;
 
-  const tunsoriHTML = `<div class="service-category"><h3 class="category-title">Tunsori</h3>${db.services.tunsori.map(createRow).join('')}</div>`;
-  const barbaHTML = `<div class="service-category"><h3 class="category-title">Barbă</h3>${db.services.barba.map(createRow).join('')}</div>`;
-  const comboHTML = `<div class="service-category"><h3 class="category-title">Combo</h3>${db.services.combo.map(createRow).join('')}</div>`;
+  const createCategory = (title, items, isOpen = false) => `
+    <div class="service-category ${isOpen ? 'is-open' : ''}">
+      <h3 class="category-title" role="button" tabindex="0">
+        ${title} <i class="ph ph-caret-down"></i>
+      </h3>
+      <div class="category-content">
+        <div class="category-content-inner">
+          ${items.map(createRow).join('')}
+        </div>
+      </div>
+    </div>
+  `;
 
-  container.innerHTML = tunsoriHTML + barbaHTML + comboHTML;
+  // First category open by default
+  container.innerHTML = 
+    createCategory('Tunsori', db.services.tunsori, true) + 
+    createCategory('Barbă', db.services.barba) + 
+    createCategory('Combo', db.services.combo);
+
+  // Attach Toggle Listeners
+  container.querySelectorAll('.category-title').forEach(titleBtn => {
+    titleBtn.addEventListener('click', () => {
+      const parent = titleBtn.closest('.service-category');
+      parent.classList.toggle('is-open');
+    });
+  });
 }
 
 function renderGallery() {
-  const accordion = document.getElementById('galleryAccordion');
-  if (!accordion) return;
+  const container = document.getElementById('galleryAccordion'); // keeping id for now to avoid html edit overhead, changing semantics in css
+  if (!container) return;
 
-  accordion.innerHTML = db.gallery.map((img, i) => `
-    <div class="portfolio-slice ${i === 0 ? 'active' : ''}" tabindex="0" role="button" aria-expanded="${i === 0}">
-      <img src="${img.src}" alt="Portofoliu Rubens" loading="lazy" class="portfolio-img">
+  container.innerHTML = db.gallery.map((img, i) => `
+    <div class="portfolio-item" tabindex="0" role="button">
+      <img src="${img.src}" alt="${img.alt}" loading="lazy" class="portfolio-img">
     </div>
   `).join('');
 
-  const slices = accordion.querySelectorAll('.portfolio-slice');
-  slices.forEach(slice => {
-    slice.addEventListener('click', () => {
-      slices.forEach(s => {
-        s.classList.remove('active');
-        s.setAttribute('aria-expanded', 'false');
-      });
-      slice.classList.add('active');
-      slice.setAttribute('aria-expanded', 'true');
+  const items = container.querySelectorAll('.portfolio-item');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      // If clicking already open, just close it
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        return;
+      }
+      
+      // Close all others
+      items.forEach(s => s.classList.remove('active'));
+      // Open this
+      item.classList.add('active');
     });
   });
 }
@@ -534,20 +560,7 @@ function initScrollAnimations() {
     // Gallery Parallax removed for Accordion layout
   });
 
-  // 7.6 Staggered Services
-  ScrollTrigger.create({
-    trigger: '.services',
-    start: 'top 60%',
-    onEnter: () => {
-      gsap.to('.GSAP-service', {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: 'expo.out'
-      });
-    }
-  });
+  // GSAP service stagger removed for pure CSS accordion dropdowns
 
   // 7.7 About Badge Reveal
   ScrollTrigger.create({
