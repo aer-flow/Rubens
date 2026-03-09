@@ -1742,14 +1742,12 @@
   }
 
   .about-stats {
-    gap: var(--space-s); /* Tighter gap so all 3 columns fit on narrow screens */
+    gap: var(--space-2xs); /* Minimal gap so all 3 cols fit */
   }
 
   .stat-label {
-    font-size: 11px;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
+    font-size: 10px;
+    white-space: nowrap; /* Keep on one line — no hyphenation */
   }
 
   .pull-quote {
