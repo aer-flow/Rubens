@@ -1735,6 +1735,15 @@
 
   .about-copy {
     padding-right: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .pull-quote {
+    padding-left: var(--space-m);
+    word-break: break-word;
   }
 
   .about-img-wrap {
