@@ -932,6 +932,7 @@
     will-change: transform;
     /* initial scale for GSAP reveal + parallax */
     transform-origin: center;
+    touch-action: pan-y; /* Ensure vertical scrolling is never blocked by gestures on this image */
   }
 
   .about-img-badge {
@@ -1733,8 +1734,8 @@
 
   .about-img-wrap {
     width: 100% !important;
-    max-width: 100% !important;
-    margin: 0;
+    max-width: 500px !important;
+    margin: 0 auto;
     transform: none !important;
     opacity: 1 !important;
   }
@@ -1743,7 +1744,7 @@
     width: 100% !important;
     height: auto;
     aspect-ratio: 4 / 5;
-    object-fit: cover;
+    object-fit: contain; /* Prevents awkward cropping inside the wrap */
   }
 
   /* Clip horizontal bleed on every section except the carousel track */
@@ -1989,8 +1990,8 @@
 
   .about-img-wrap {
     width: 100%;
-    max-width: 100%;
-    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
 
