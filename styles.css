@@ -1741,6 +1741,17 @@
     box-sizing: border-box;
   }
 
+  .about-stats {
+    gap: var(--space-s); /* Tighter gap so all 3 columns fit on narrow screens */
+  }
+
+  .stat-label {
+    font-size: 11px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
   .pull-quote {
     padding-left: var(--space-m);
     word-break: break-word;
