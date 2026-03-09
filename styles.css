@@ -1732,10 +1732,14 @@
     opacity: 1 !important;
   }
 
+  .about-copy {
+    padding-right: 0;
+  }
+
   .about-img-wrap {
     width: 100% !important;
     max-width: 500px !important;
-    margin: 0 auto;
+    margin: 0 auto !important;
     transform: none !important;
     opacity: 1 !important;
   }
